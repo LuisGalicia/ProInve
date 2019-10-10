@@ -6,11 +6,33 @@
 /*
  * Your customer ViewModel code goes here
  */
-define([],
- function() {
+define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider', 'ojs/ojresponsiveutils', 'ojs/ojresponsiveknockoututils',
+  'ojs/ojknockout', 'ojs/ojformlayout', 'ojs/ojlabel', 'ojs/ojselectcombobox', 'ojs/ojselectcombobox',
+  'ojs/ojinputtext', 'ojs/ojbutton', 'ojs/ojdatetimepicker', 'ojs/ojradioset', 'ojs/ojinputnumber',
+  'ojs/ojswitch', 'ojs/ojbutton', 'ojs/ojtable', 'ojs/ojbootstrap', 'ojs/ojtrain'],
+  function (oj, ko, $, ) {
+    
+   
+      var self = this;
+      this.selectedStepValue = ko.observable('stp1');
+      this.selectedStepLabel = ko.observable('Step One');
+      this.stepArray =
+        ko.observableArray(
+          [{ label: 'Step One', id: 'stp1' },
+          { label: 'Step Two', id: 'stp2' },
+          { label: 'Step Three', id: 'stp3' },
+          { label: 'Step Four', id: 'stp4' },
+          { label: 'Step Five', id: 'stp5' }]);
+      this.updateLabelText = function (event) {
+        var train = document.getElementById("train");
+        self.selectedStepLabel(train.getStep(event.detail.value).label);
+      };
+    
 
     function SoliinViewModel() {
       var self = this;
+
+      
       // Below are a set of the ViewModel methods invoked by the oj-module component.
       // Please reference the oj-module jsDoc for additional information.
 
@@ -22,14 +44,14 @@ define([],
        * and inserted into the DOM and after the View is reconnected
        * after being disconnected.
        */
-      self.connected = function() {
+      self.connected = function () {
         // Implement if needed
       };
 
       /**
        * Optional ViewModel method invoked after the View is disconnected from the DOM.
        */
-      self.disconnected = function() {
+      self.disconnected = function () {
         // Implement if needed
       };
 
@@ -37,7 +59,7 @@ define([],
        * Optional ViewModel method invoked after transition to the new View is complete.
        * That includes any possible animation between the old and the new View.
        */
-      self.transitionCompleted = function() {
+      self.transitionCompleted = function () {
         // Implement if needed
       };
     }
