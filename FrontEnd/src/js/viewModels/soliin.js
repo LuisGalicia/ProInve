@@ -6,33 +6,31 @@
 /*
  * Your customer ViewModel code goes here
  */
-define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider', 'ojs/ojresponsiveutils', 'ojs/ojresponsiveknockoututils',
+define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojbootstrap', 'ojs/ojmodule-element-utils', 'ojs/ojmodule-element',
+  'ojs/ojarraydataprovider', 'ojs/ojresponsiveutils', 'ojs/ojresponsiveknockoututils',
   'ojs/ojknockout', 'ojs/ojformlayout', 'ojs/ojlabel', 'ojs/ojselectcombobox', 'ojs/ojselectcombobox',
   'ojs/ojinputtext', 'ojs/ojbutton', 'ojs/ojdatetimepicker', 'ojs/ojradioset', 'ojs/ojinputnumber',
   'ojs/ojswitch', 'ojs/ojbutton', 'ojs/ojtable', 'ojs/ojbootstrap', 'ojs/ojtrain'],
-  function (oj, ko, $, ) {
-    
-   
-      var self = this;
-      this.selectedStepValue = ko.observable('stp1');
-      this.selectedStepLabel = ko.observable('Step One');
-      this.stepArray =
-        ko.observableArray(
-          [{ label: 'Step One', id: 'stp1' },
-          { label: 'Step Two', id: 'stp2' },
-          { label: 'Step Three', id: 'stp3' },
-          { label: 'Step Four', id: 'stp4' },
-          { label: 'Step Five', id: 'stp5' }]);
-      this.updateLabelText = function (event) {
-        var train = document.getElementById("train");
-        self.selectedStepLabel(train.getStep(event.detail.value).label);
-      };
-    
+  function (oj, ko, $, Bootstrap, ModuleElementUtils) {
+
+
+    var self = this;
+    this.ModuleElementUtils = ModuleElementUtils;
+    this.currentModule = ko.observable("stepone");
+    this.stepArray =
+      ko.observableArray(
+        [{ label: 'Información Personal', id: 'stp1' },
+        { label: 'Autenticación', id: 'stp2' },
+        { label: 'Datos de Dirección', id: 'stp3', disabled: true },
+        { label: 'Información Financiera', id: 'stp4', disabled: true },
+        { label: 'Comprobantes', id: 'stp5', disabled: true }]);
+
+
 
     function SoliinViewModel() {
       var self = this;
 
-      
+
       // Below are a set of the ViewModel methods invoked by the oj-module component.
       // Please reference the oj-module jsDoc for additional information.
 

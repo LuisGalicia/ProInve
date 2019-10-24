@@ -7,12 +7,13 @@
   <h5 align="center">LLene los campos requeridos para poder continuar.</h5>
   <br />
   <div id="train-container">
-    <oj-train id="train" class="oj-train-stretch" style="width: 100%;"
-      on-selected-step-changed="[[updateLabelText]]" selected-step="{{selectedStepValue}}" steps="[[stepArray]]">
+    <oj-train id="train" class="oj-train-stretch" style="width: 100%;" steps="[[stepArray]]">
+
     </oj-train>
-    <br />
-    <h3 id="currentStepText" data-bind="text: 'You are on ' + selectedStepLabel()" style="text-align: center">
-    </h3>
-    <br />
+    <div id="modulesteps">
+        <oj-module config="[[ModuleElementUtils.createConfig({name: 'solicitud/' + currentModule()})]]">
+
+        </oj-module>
+    </div>
   </div>
 </div>
