@@ -1,0 +1,43 @@
+<!--
+ Copyright (c) 2014, 2019, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+ -->
+<div class="oj-hybrid-padding" style="padding-top: 10px">
+  <oj-form-layout style="padding-left: 5%" align="left" direction="row">
+
+    <h1>Simulador de inversión</h1>
+    <h3>LLene los campos requeridos para poder continuar.</h3>
+    <br />
+    <oj-input-text value=""
+      label-hint="Introducir el importe a invertir (La cantidad debe de ser mayor a 10,000 y menor a 2,000,000):">
+    </oj-input-text required>
+
+    <oj-combobox-one id="plazoinversion" value="" label-hint="Plazo de inversión:" required>
+      <oj-option value="1">1</oj-option>
+      <oj-option value="2">2</oj-option>
+      <oj-option value="3">3</oj-option>
+      <oj-option value="4">4</oj-option>
+      <oj-option value="5">5</oj-option>
+    </oj-combobox-one>
+    <oj-combobox-one id="tipoinversion" value="" label-hint="Seleccione uno o más tipos de inversiones:" required>
+      <oj-option value="IS">Tipo de inversión 1</oj-option>
+      <oj-option value="IS">Tipo de inversión 2</oj-option>
+      <oj-option value="IS">Tipo de inversión 3</oj-option>
+      <oj-option value="IS">Tipo de inversión 4</oj-option>
+    </oj-combobox-one>
+
+    <oj-table id='table' aria-label='Tipos de inversión' data='[[dataprovider]]'
+      selection-mode='{"row": "multiple", "column": "multiple"}' dnd='{"reorder": {"columns": "enabled"}}'
+      scroll-policy='loadMoreOnScroll' scroll-policy-options='{"fetchSize": 10}' columns='[{"headerText": "Tipos de inversión", 
+                 "field": "tipoinversion",
+                 "headerClassName": "oj-sm-only-hide",
+                 "className": "oj-sm-only-hide",
+                 "resizable": "enabled"}]' style='width: 100%;'>
+    </oj-table><br />
+    <div >
+      <oj-button id='iniciarsimulacion' class="oj-button-primary oj-button-lg">INICIAR SIMULACION</oj-button>
+      <oj-button id='iniciarsimulacion' class="oj-button-primary oj-button-lg">COMPARAR TIPOS DE INVERSIÓN</oj-button>
+    </div>
+  </oj-form-layout>
+
+</div>
