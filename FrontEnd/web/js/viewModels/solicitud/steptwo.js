@@ -1,12 +1,11 @@
-define( ['knockout', 'ojs/ojbootstrap', 'ojs/ojmodule-element-utils', 'ojs/ojmodule-element','ojs/ojbutton'],
+define( ['knockout', 'ojs/ojbootstrap', 'ojs/ojmodule-element-utils', 'ojs/ojmodule-element', 'ojs/ojbutton',
+'ojs/ojformlayout'],
    function(ko, Bootstrap, ModuleElementUtils)
    {
       function SimpleModuleModel() {
-         this.currentModule = ko.observable("stepthree");
-         this.ModuleElementUtils = ModuleElementUtils;
-       }
-       Bootstrap.whenDocumentReady().then(function () {
-         ko.applyBindings(new SimpleModuleModel(), document.getElementById('modulesteps'));
-       });
+         currentModule = ko.observable();
+         ModuleElementUtils = ModuleElementUtils;
+      }
+      return new SimpleModuleModel();
    }
 );

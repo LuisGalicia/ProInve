@@ -1,4 +1,16 @@
-<h1>Estás en el paso 2</h1>
-<oj-buttonset-one class="oj-buttonset-width-auto" value="{{currentModule}}">
-    <oj-option id="nextStep2" value="steptwo">Continuar</oj-option>
-  </oj-buttonset-one>
+<h5 align="center" style="padding-top: 50px;">Se inició el proceso de la verficiación</h5>
+<h5 align="center">Se le ha enviado un enlace de confirmación a su correo electrónico 
+    y un codigo de confirmación via SMS al telefono proporcionado</h5>
+<h5 align="center"></h5>
+
+<oj-form-layout max-columns="2" align="center" style="padding-top: 50px;">
+        <oj-input-text id="inputenlaceconfir" label-hint="Enlace de confirmación"></oj-input-text>
+        <oj-input-text id="inputsmsconfir" label-hint="Codigo SMS de confirmación"></oj-input-text>
+</oj-form-layout>
+
+<oj-form-layout id="botonstepone" align="center" style="padding-top: 10px;">
+        <oj-buttonset-one class="oj-button-primary oj-button-lg" value="{{currentModule}}">
+            <oj-option id="stepthree" value="stepthree">Continuar</oj-option>
+        </oj-buttonset-one>
+</oj-form-layout>
+    
