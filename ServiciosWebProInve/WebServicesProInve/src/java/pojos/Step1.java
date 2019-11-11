@@ -11,20 +11,21 @@ import java.util.Date;
  *
  * @author Jahir
  */
-public class Inversionista {
+public class Step1 {
     String nombre;
     String apellido_paterno;
     String apellido_materno;
     String rfc;
     Date fecha_nacimiento;
+    String profesion;
     String nombre_empresa;
     String correo;
     String telefono;
-    Integer id_inversionista;
-    Integer id_direccion;
-    Integer id_codigo;
+    Integer codigo_verificacion;
+    Boolean estado_codigo;
+    byte[] firma;
     
-    public Inversionista(){        
+    public Step1(){        
     }
 
     public String getNombre() {
@@ -67,6 +68,14 @@ public class Inversionista {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
+    public String getProfesion() {
+        return profesion;
+    }
+
+    public void setProfesion(String profesion) {
+        this.profesion = profesion;
+    }
+
     public String getNombre_empresa() {
         return nombre_empresa;
     }
@@ -91,28 +100,28 @@ public class Inversionista {
         this.telefono = telefono;
     }
 
-    public Integer getId_inversionista() {
-        return id_inversionista;
+    public Integer getCodigo_verificacion() {
+        return codigo_verificacion;
     }
 
-    public void setId_inversionista(Integer id_inversionista) {
-        this.id_inversionista = id_inversionista;
+    public void setCodigo_verificacion(Integer codigo_verificacion) {
+        this.codigo_verificacion = codigo_verificacion;
     }
 
-    public Integer getId_direccion() {
-        return id_direccion;
+    public Boolean getEstado_codigo() {
+        return estado_codigo;
     }
 
-    public void setId_direccion(Integer id_direccion) {
-        this.id_direccion = id_direccion;
+    public void setEstado_codigo(Boolean estado_codigo) {
+        this.estado_codigo = estado_codigo;
     }
 
-    public Integer getId_codigo() {
-        return id_codigo;
+    public byte[] getFirma() {
+        return firma;
     }
 
-    public void setId_codigo(Integer id_codigo) {
-        this.id_codigo = id_codigo;
+    public void setFirma(byte[] firma) {
+        this.firma = firma;
     }
         
 }
