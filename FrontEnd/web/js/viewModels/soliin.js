@@ -17,8 +17,8 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojbootstrap', 'ojs/ojmodule-ele
     var self = this;
     this.stepArray =
       ko.observableArray(
-        [{ label: 'Información Personal', id: 'stp1' },
-        { label: 'Autenticación', id: 'stp2' },
+        [{ label: 'Información Personal', id: 'stp1', disabled: true },
+        { label: 'Autenticación', id: 'stp2', disabled: true },
         { label: 'Datos de Dirección', id: 'stp3', disabled: true },
         { label: 'Información Financiera', id: 'stp4', disabled: true },
         { label: 'Comprobantes', id: 'stp5', disabled: true }]);
@@ -26,7 +26,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojbootstrap', 'ojs/ojmodule-ele
 
 
     function SoliinViewModel() {
-      this.currentModule = ko.observable("stepone");
+      
       this.ModuleElementUtils = ModuleElementUtils;
     }
 

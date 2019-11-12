@@ -34,10 +34,38 @@
                  "className": "oj-sm-only-hide",
                  "resizable": "enabled"}]' style='width: 100%;'>
     </oj-table><br />
-    <div >
-      <oj-button id='iniciarsimulacion' class="oj-button-primary oj-button-lg">INICIAR SIMULACION</oj-button>
-      <oj-button id='iniciarsimulacion' class="oj-button-primary oj-button-lg">COMPARAR TIPOS DE INVERSIÓN</oj-button>
+    <div>
+      <oj-button id='iniciarsimulacion' class="oj-button-primary oj-button-lg" on-oj-action="[[open]]">INICIAR
+        SIMULACION</oj-button>
+      <oj-button id='iniciarcomparacion' class="oj-button-primary oj-button-lg">COMPARAR TIPOS DE INVERSIÓN</oj-button>
     </div>
   </oj-form-layout>
+
+  <oj-dialog style="display:none;width:900px;height:600px;" id="modalsimulador" dialog-title="Plazos de inversión">
+    <div slot="body">
+
+      <div id='graficasimulacion'>
+
+        <oj-chart id="barChart" type="bar" orientation="[[orientationValue]]" stack="[[stackValue]]"
+          data="[[dataProvider]]" animation-on-display="auto" animation-on-data-change="auto" hover-behavior="dim"
+          style="width:100%;height:400px;">
+
+          <template slot='itemTemplate' data-oj-as='item'>
+            <oj-chart-item value='[[item.data.value]]' group-id='[[ [item.data.plazo] ]]'
+              series-id='[[item.data.seleccion]]'>
+            </oj-chart-item>
+          </template>
+        </oj-chart>
+
+      </div>
+
+    </div>
+    <div slot="footer">
+      <oj-button id="okButton" class="oj-button-primary oj-button-lg" on-oj-action="[[close]]">Invertir Ahora
+      </oj-button>
+      <oj-button id="okButton" class="oj-button-lg" on-oj-action="[[close]]">Cerrar
+      </oj-button>
+    </div>
+  </oj-dialog>
 
 </div>

@@ -1,4 +1,16 @@
-<h1 >Estás en el paso 4</h1>
-<oj-buttonset-one class="oj-buttonset-width-auto" value="{{currentModule}}">
-    <oj-option id="nextStep4" value="stepfour">Continuar</oj-option>
-  </oj-buttonset-one>
+<oj-form-layout max-columns="3" align="center" style="padding-top: 50px;">
+  <oj-combobox-one id="comboboxbancos" label-hint="Banco">
+    <oj-option value="Banamex">Banamex</oj-option>
+    <oj-option value="Bancomer">Bancomer</oj-option>
+    <oj-option value="HSBC">HSBC</oj-option>
+    <oj-option value="Santander">Santander</oj-option>
+    <oj-option value="Banorte">Banorte</oj-option>
+    <oj-option value="Scotiabank">Scotiabank</oj-option>
+  </oj-combobox-one>
+  <oj-input-text id="inputcuenta" label-hint="Numero de cuenta"></oj-input-text>
+  <oj-input-text id="inputclabe" label-hint="Clabe interbancaria"></oj-input-text>
+</oj-form-layout>
+
+<oj-form-layout align="center" style="padding-top: 30px;">
+  <oj-button id="nextfive" class="oj-button-primary oj-button-lg" on-oj-action=[[nextStep]]>Continuar</oj-button>
+</oj-form-layout>

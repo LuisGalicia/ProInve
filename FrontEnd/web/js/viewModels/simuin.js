@@ -6,11 +6,12 @@
 /*
  * Your incidents ViewModel code goes here
  */
-define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider','ojs/ojresponsiveutils', 'ojs/ojresponsiveknockoututils',
+define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider', 'text!../viewModels/json/simulacion.json', 'ojs/ojresponsiveutils', 'ojs/ojresponsiveknockoututils',
   'ojs/ojknockout', 'ojs/ojformlayout', 'ojs/ojlabel', 'ojs/ojselectcombobox', 'ojs/ojselectcombobox',
   'ojs/ojinputtext', 'ojs/ojbutton', 'ojs/ojdatetimepicker', 'ojs/ojradioset', 'ojs/ojinputnumber',
-  'ojs/ojswitch', 'ojs/ojbutton', 'ojs/ojtable', 'ojs/ojbootstrap'],
-  function (oj, ko, $, ArrayDataProvider) {
+  'ojs/ojswitch', 'ojs/ojbutton', 'ojs/ojtable', 'ojs/ojbootstrap', 'ojs/ojdialog', 'ojs/ojarraydataprovider',
+  'ojs/ojchart', 'ojs/ojtoolbar'],
+  function (oj, ko, $, ArrayDataProvider, data) {
 
     function SimuinViewModel() {
       var self = this;
@@ -22,16 +23,29 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider','ojs/ojres
         return this.smScreen() ? 1 : 2;
       }.bind(this));
 
-      var deptArray = [{ tipoinversion: "Tipo de inversión 1"},{ tipoinversion: "Tipo de inversión 3"}];
+      var deptArray = [{ tipoinversion: "Tipo de inversión 1" }, { tipoinversion: "Tipo de inversión 3" }];
 
-      this.dataprovider = new ArrayDataProvider(deptArray, { keyAttributes: 'tipoinversion',
-       implicitSort: [{ attribute: 'tipoinversion', direction: 'ascending' }] });
+      this.close = function (event) {
+        document.getElementById('modalsimulador').close();
+      }
 
+      this.open = function (event) {
+        document.getElementById('modalsimulador').open();
+      }
 
+      this.dataprovider = new ArrayDataProvider(deptArray, {
+        keyAttributes: 'tipoinversion',
+        implicitSort: [{ attribute: 'tipoinversion', direction: 'ascending' }]
+      });
+        
+      orientationValue = ko.observable('vertical');
+       stackValue = ko.observable('off');
+       dataProvider = new ArrayDataProvider(JSON.parse(data), { keyAttributes: 'id' });
+  
 
       self.connected = function () {
-        // Implement if needed
-      };
+          // Implement if needed
+        };
 
       /**
        * Optional ViewModel method invoked after the View is disconnected from the DOM.

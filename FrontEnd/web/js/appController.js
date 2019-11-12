@@ -12,6 +12,10 @@ define(['knockout', 'ojs/ojmodule-element-utils', 'ojs/ojknockouttemplateutils',
      function ControllerViewModel() {
        var self = this;
 
+       currentModule = ko.observable('stepone');
+       currentStep = ko.observable('stp1');
+       
+
        this.KnockoutTemplateUtils = KnockoutTemplateUtils;
 
       // Media queries for repsonsive layouts
