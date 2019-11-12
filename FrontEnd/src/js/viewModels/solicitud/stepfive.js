@@ -3,8 +3,11 @@ define( ['knockout', 'ojs/ojbootstrap', 'ojs/ojmodule-element-utils', 'ojs/ojmod
    function(ko, Bootstrap, ModuleElementUtils)
    {
       function SimpleModuleModel() {
-         currentModule = ko.observable();
          ModuleElementUtils = ModuleElementUtils;
+
+         self.nextStep = function(){
+            
+         };
       }
       return new SimpleModuleModel();
    }

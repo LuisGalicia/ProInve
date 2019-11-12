@@ -10,8 +10,6 @@
     <oj-input-text id="inputtelefono" label-hint="Telefono"></oj-input-text>
 </oj-form-layout>
 
-<oj-form-layout id="botonstepone" align="center" style="padding-top: 10px;">
-    <oj-buttonset-one class="oj-button-primary oj-button-lg" value="{{currentModule}}">
-        <oj-option id="stepone" value="steptwo">Continuar</oj-option>
-    </oj-buttonset-one>
+<oj-form-layout  align="center" style="padding-top: 10px;">
+    <oj-button id="nexttwo" class="oj-button-primary oj-button-lg" on-oj-action=[[nextStep]]>Continuar</oj-button>
 </oj-form-layout>
