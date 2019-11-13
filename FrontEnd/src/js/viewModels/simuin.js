@@ -6,12 +6,13 @@
 /*
  * Your incidents ViewModel code goes here
  */
-define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider', 'text!../viewModels/json/simulacion.json', 'ojs/ojresponsiveutils', 'ojs/ojresponsiveknockoututils',
+define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider', 'text!../viewModels/json/simulacion.json',
+  'text!../viewModels/json/comparacion.json', 'ojs/ojresponsiveutils', 'ojs/ojresponsiveknockoututils',
   'ojs/ojknockout', 'ojs/ojformlayout', 'ojs/ojlabel', 'ojs/ojselectcombobox', 'ojs/ojselectcombobox',
   'ojs/ojinputtext', 'ojs/ojbutton', 'ojs/ojdatetimepicker', 'ojs/ojradioset', 'ojs/ojinputnumber',
   'ojs/ojswitch', 'ojs/ojbutton', 'ojs/ojtable', 'ojs/ojbootstrap', 'ojs/ojdialog', 'ojs/ojarraydataprovider',
   'ojs/ojchart', 'ojs/ojtoolbar'],
-  function (oj, ko, $, ArrayDataProvider, data) {
+  function (oj, ko, $, ArrayDataProvider, dataSimu, dataComp) {
 
     function SimuinViewModel() {
       var self = this;
@@ -25,27 +26,36 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider', 'text!../
 
       var deptArray = [{ tipoinversion: "Tipo de inversión 1" }, { tipoinversion: "Tipo de inversión 3" }];
 
-      this.close = function (event) {
+      this.closeSimu = function (event) {
         document.getElementById('modalsimulador').close();
       }
 
-      this.open = function (event) {
+      this.openSimu = function (event) {
         document.getElementById('modalsimulador').open();
+      }
+
+      this.closeCompa = function (event) {
+        document.getElementById('modalcomparar').close();
+      }
+
+      this.openCompa = function (event) {
+        document.getElementById('modalcomparar').open();
       }
 
       this.dataprovider = new ArrayDataProvider(deptArray, {
         keyAttributes: 'tipoinversion',
         implicitSort: [{ attribute: 'tipoinversion', direction: 'ascending' }]
       });
-        
+
       orientationValue = ko.observable('vertical');
-       stackValue = ko.observable('off');
-       dataProvider = new ArrayDataProvider(JSON.parse(data), { keyAttributes: 'id' });
-  
+      stackValue = ko.observable('off');
+      dataSimulacion = new ArrayDataProvider(JSON.parse(dataSimu), { keyAttributes: 'id' });
+      dataComparacion = new ArrayDataProvider(JSON.parse(dataComp), { keyAttributes: 'id' });
+
 
       self.connected = function () {
-          // Implement if needed
-        };
+        // Implement if needed
+      };
 
       /**
        * Optional ViewModel method invoked after the View is disconnected from the DOM.
