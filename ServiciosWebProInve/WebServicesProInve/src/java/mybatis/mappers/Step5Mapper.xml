@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<mapper namespace="Step5">        
+    <insert id="guardarStep5" parameterType="pojos.Step5">
+        INSERT INTO ProInver.dbo.Step1 (id_documento, id_step1, documento) 
+        VALUES(#{id_documento}, #{id_step1}, #{documento})
+    </insert>    
+</mapper>

@@ -28,6 +28,21 @@ public class Step1 {
     public Step1(){        
     }
 
+    public Step1(String nombre, String apellido_paterno, String apellido_materno,
+            String rfc, Date fecha_nacimiento, String profesion, 
+            String nombre_empresa, String correo, String telefono) {
+        this.nombre = nombre;
+        this.apellido_materno = apellido_materno;
+        this.rfc = rfc;
+        this.fecha_nacimiento = fecha_nacimiento;
+        this.profesion = profesion;
+        this.nombre_empresa = nombre_empresa;
+        this.correo = correo;
+        this.telefono = telefono;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+    }
+
     public String getNombre() {
         return nombre;
     }

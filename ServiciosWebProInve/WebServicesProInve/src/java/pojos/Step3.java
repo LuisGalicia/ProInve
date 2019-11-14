@@ -19,6 +19,16 @@ public class Step3 {
     public Step3(){        
     }
 
+    public Step3(Integer id_direccion, String calle, Integer numero,
+            Integer id_codigo_postal, Integer id_step1) {
+        this.id_direccion = id_direccion;
+        this.calle = calle;
+        this.numero = numero;
+        this.id_codigo_postal = id_codigo_postal;
+        this.id_step1 = id_step1;
+    }
+
+    
     public Integer getId_direccion() {
         return id_direccion;
     }

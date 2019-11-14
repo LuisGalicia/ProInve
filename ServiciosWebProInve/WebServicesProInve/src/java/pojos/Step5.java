@@ -17,6 +17,13 @@ public class Step5 {
     public Step5(){        
     }
 
+    public Step5(Integer id_documento, Integer id_step1, String documento) {
+        this.id_documento = id_documento;
+        this.id_step1 = id_step1;
+        this.documento = documento;
+    }
+
+    
     public Integer getId_documento() {
         return id_documento;
     }

@@ -24,6 +24,19 @@ public class Step4 {
     public Step4(){        
     }
 
+    public Step4(Integer id_cuenta, Integer clabe, Integer no_cuenta, Integer id_step1, Integer id_banco, Integer id_origen_inversion, Integer id_tipo_inversion, Integer monto_inversion, Integer plazo_inversion) {
+        this.id_cuenta = id_cuenta;
+        this.clabe = clabe;
+        this.no_cuenta = no_cuenta;
+        this.id_step1 = id_step1;
+        this.id_banco = id_banco;
+        this.id_origen_inversion = id_origen_inversion;
+        this.id_tipo_inversion = id_tipo_inversion;
+        this.monto_inversion = monto_inversion;
+        this.plazo_inversion = plazo_inversion;
+    }
+
+    
     public Integer getId_cuenta() {
         return id_cuenta;
     }
