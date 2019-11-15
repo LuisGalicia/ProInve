@@ -25,15 +25,16 @@
       <oj-option value="IS">Tipo de inversión 3</oj-option>
       <oj-option value="IS">Tipo de inversión 4</oj-option>
     </oj-combobox-one>
-
+    <div style="padding-left: 10px; padding-bottom: 20px;">
     <oj-table id='table' aria-label='Tipos de inversión' data='[[dataprovider]]'
       selection-mode='{"row": "multiple", "column": "multiple"}' dnd='{"reorder": {"columns": "enabled"}}'
       scroll-policy='loadMoreOnScroll' scroll-policy-options='{"fetchSize": 10}' columns='[{"headerText": "Tipos de inversión", 
                  "field": "tipoinversion",
                  "headerClassName": "oj-sm-only-hide",
                  "className": "oj-sm-only-hide",
-                 "resizable": "enabled"}]' style='width: 100%;'>
+                 "resizable": "enabled"}]' style='width: 100%; background-color: white;'>
     </oj-table><br />
+    </div>
     <div>
       <oj-button id='iniciarsimulacion' class="oj-button-primary oj-button-lg" on-oj-action="[[openSimu]]">INICIAR
         SIMULACION</oj-button>
@@ -88,9 +89,9 @@
 
     </div>
     <div slot="footer">
-      <oj-button id="okButton" class="oj-button-primary oj-button-lg" on-oj-action="[[close]]">Invertir Ahora
+      <oj-button id="okButton" class="oj-button-primary oj-button-lg" on-oj-action="[[closeCompa]]">Invertir Ahora
       </oj-button>
-      <oj-button id="okButton" class="oj-button-lg" on-oj-action="[[close]]">Cerrar
+      <oj-button id="okButton" class="oj-button-lg" on-oj-action="[[closeCompa]]">Cerrar
       </oj-button>
     </div>
   </oj-dialog>

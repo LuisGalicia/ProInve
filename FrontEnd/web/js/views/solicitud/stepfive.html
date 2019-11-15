@@ -1,4 +1,101 @@
-<h1>Estás en el paso 5</h1>
+<style>
+  .upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn {
+  border: 1px solid rgb(47, 47, 48);
+  color: rgb(53, 53, 53);
+  background-color: ghostwhite;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+</style>
+
 <oj-form-layout align="center" style="padding-top: 30px;">
-  <oj-button id="finish" class="oj-button-primary oj-button-lg" on-oj-action=[[nextStep]]>Continuar</oj-button>
+    <h5 >Subir expediente para continuar con el proceso de inversión</h5>
+    <div class="upload-btn-wrapper" >
+        <button  class="btn">SUBIR ARCHIVOS</button>
+        <input type="file" name="myfile" />
+      </div>
+  </oj-form-layout>
+
+<oj-form-layout align="center" style="padding-top: 30px;">
+  <div class="oj-flex-items-pad demo-flex-display oj-sm-margin-2x">
+    <center>
+      <div class="oj-flex-item oj-sm-margin-2x">
+        <span><b>
+            <h2> Introduce tu Firma digitalizada </h2>
+          </b></span>
+      </div>
+      <br>
+      <canvas id="signature-pad" style="border-style: solid; border-color: gainsboro" class="signature-pad" width=500
+        height=300></canvas>
+      <div class="oj-flex-item oj-sm-margin-2x">
+        <span><b>
+            <font >Es importante que tu firma sea lo más perecida
+              posible a la firma de tu identificación.</font>
+          </b></span>
+      </div>
+      <oj-button id="limpiar" class='oj-button-sm oj-button-primary oj-button-lg' chroming='full'
+        on-oj-action="[[limpiarFirma]]">
+        <span slot="startIcon" class="oj-fwk-icon oj-fwk-icon-status-error"></span>
+        Borrar firma
+      </oj-button>
+      <oj-button id="guardar" class='oj-button-sm oj-button-primary oj-button-lg' chroming='full'
+        on-oj-action="[[guardarFirmaYFinaliza]]">
+        <span slot="startIcon" class="oj-fwk-icon oj-fwk-icon-status-confirmation"></span>
+        Guardar firma y finalizar proceso de inversión
+      </oj-button>
+    </center>
+  </div>
 </oj-form-layout>
+
+<oj-form-layout>
+    <oj-dialog style="display:none;width:900px;height:600px;" id="modalcontrato" dialog-title="Contrato de inversión">
+        <div slot="body">
+      
+          <p style="text-align: center;">CONTRATO DE INVERSIÓN Y ARRENDAMIENTO DE TIERRAS ENTRE LA SECRETARÍA
+            DESARROLLO INDUSTRIAL DE LA FEDERACIÓN
+            DE MONTERROSO Y LA INDUSTRIA TABACALERA DE MONTERROSO-SILVERPORT CENTROAMÉRICA&nbsp;</p>
+          <p style="text-align: center;">Conste por el presente instrumento un Contrato de Inversión que se
+            otorga al tenor de las siguientes cláusulas:&nbsp;</p>
+          <p style="text-align: justify;">CLÁUSULA PRIMERA: INTERVINIENTES. Comparecen a la celebración del
+            presente Contrato de Inversión las siguientes partes:&nbsp;</p>
+          <ol>
+            <li style="text-align: justify;">1.1. El Secretario de Producción, Comercio y Desarrollo, Económico,
+              Santiago Guerrero, debidamente facultado en su calidad de máxima autoridad de la Secretaría,
+              presidente del Consejo Sectorial de la Producción y la Inversión y en ejercicio de sus atribuciones
+              legales, particularmente según lo previsto en el Artículo 28 del Reglamento al Programa de Promoción
+              de Inversión Extranjera de Monterroso, parte a la que para efectos del presente contrato en lo posterior
+              se podrá denominar simplemente como la “SECRETARÍA”.&nbsp;</li>
+            <li style="text-align: justify;">1.2.- La empresa INDUSTRIA TABACALERA DE MONTERROSO-SILVERPORT
+              CENTROAMÉRICA, constituida bajo las leyes de la Federación de Monterroso con domicilio fiscal
+              en Monterroso, en el estado de Aguacielo, debidamente representada por Franco Velacruz, en su
+              calidad de presidente ejecutivo y como tal representante legal, conforme consta en la copia
+              legalizada de su nombramiento, que se agrega como habilitante. Para efectos del presente Contrato,
+              en lo posterior, a esta parte se la podrá denominar simplemente como el “INVERSIONISTA”. </li>
+          </ol>
+      
+        </div>
+        <div slot="footer">
+          <oj-button id="okButton" class="oj-button-primary oj-button-lg" on-oj-action="[[closeContra]]">Invertir Ahora
+          </oj-button>
+          <oj-button id="okButton" class="oj-button-lg" on-oj-action="[[closeContra]]">Cerrar
+          </oj-button>
+        </div>
+      </oj-dialog>
+</oj-form-layout>
+
+
