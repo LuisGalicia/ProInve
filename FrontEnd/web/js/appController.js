@@ -25,8 +25,8 @@ define(['knockout', 'ojs/ojmodule-element-utils', 'ojs/ojknockouttemplateutils',
       self.mdScreen = ResponsiveKnockoutUtils.createMediaQueryObservable(mdQuery);
 
        // Router setup
-       self.router = Router.rootInstance;
-       self.router.configure({
+       router = Router.rootInstance;
+       router.configure({
          'inicio': {label: 'Inicio', isDefault: true},
          'simuin': {label: 'Simulador de Inversiones'},
          'soliin': {label: 'Solicitud De Inversiones'},
@@ -34,11 +34,11 @@ define(['knockout', 'ojs/ojmodule-element-utils', 'ojs/ojknockouttemplateutils',
        });
       Router.defaults['urlAdapter'] = new Router.urlParamAdapter();
 
-      self.moduleConfig = ko.observable({'view':[], 'viewModel':null});
+      moduleConfig = ko.observable({'view':[], 'viewModel':null});
 
       self.loadModule = function() {
         ko.computed(function() {
-          var name = self.router.moduleConfig.name();
+          var name = router.moduleConfig.name();
           var viewPath = 'views/' + name + '.html';
           var modelPath = 'viewModels/' + name;
           var masterPromise = Promise.all([
@@ -47,7 +47,7 @@ define(['knockout', 'ojs/ojmodule-element-utils', 'ojs/ojknockouttemplateutils',
           ]);
           masterPromise.then(
             function(values){
-              self.moduleConfig({'view':values[0],'viewModel':values[1]});
+              moduleConfig({'view':values[0],'viewModel':values[1]});
             }
           );
         });
