@@ -10,7 +10,7 @@ and open the template in the editor.
 
 <mapper namespace="Step1">        
     <insert id="guardarStep1" parameterType="pojos.Step1">
-        INSERT INTO ProInver.dbo.Step1 (Nombre, apellido_paterno, apellido_materno, rfc, fecha_nacimiento, profesion, nombre_empresa, correo, telefono) 
-        VALUES(#{nombre}, #{apellido_paterno}, #{apellido_materno}, #{rfc}, #{fecha_nacimiento}, #{profesion}, #{nombre_empresa}, #{correo}, #{telefono})
+        INSERT INTO ProInver.dbo.Step1 (Nombre, Apellido_Paterno, Apellido_Materno, RFC, Fecha_Nacimiento, Profesion, Nombre_Empresa, Correo, Telefono) 
+        VALUES(#{nombre}, #{apellido_paterno}, #{apellido_materno}, #{rfc},  #{fecha_nacimiento}, #{profesion}, #{nombre_empresa}, #{correo}, #{telefono})
     </insert>    
 </mapper>

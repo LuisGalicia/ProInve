@@ -16,7 +16,7 @@ and open the template in the editor.
                 <property name="driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
                 <property name="url" value="jdbc:sqlserver://localhost:1433;instanceName=SQLEXPRESS;db=ProInver"/>
                 <property name = "username" value = "sa"/>
-                <property name = "password" value = "1001"/>
+                <property name = "password" value = "inquisidorduy"/>
                 <property name = "poolMaximumActiveConnections" value = "50"/>
             </dataSource>
         </environment>
