@@ -19,6 +19,7 @@ import javax.ws.rs.core.MediaType;
 import mybatis.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
 import pojos.Mensaje;
+import pojos.Step0;
 import pojos.Step1;
 import pojos.Step3;
 import pojos.Step4;
@@ -39,6 +40,28 @@ public class Step1WS {
      * Creates a new instance of Step1Resource
      */
     public Step1WS() {
+    }
+    
+    @POST
+    @Path("step0")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Mensaje guardarDatos(
+        @FormParam("datosRecuperados") String datosRecuperados){        
+        Gson gson = new Gson();
+        Mensaje mensajeResultado = new Mensaje();
+        Step0 datosStep0 = gson.fromJson(datosRecuperados, Step0.class);
+        
+        SqlSession conn = MyBatisUtil.getSession();
+        try{
+            conn.insert("Step0.guardarStep0", datosStep0);
+            conn.commit();
+            mensajeResultado = new Mensaje(false, "Datos registrados correctamente Step 0");
+        }catch(Exception ex){
+            mensajeResultado = new Mensaje(true, ex.getMessage());
+        }finally{
+            conn.close();
+        }        
+        return mensajeResultado;
     }
 
     

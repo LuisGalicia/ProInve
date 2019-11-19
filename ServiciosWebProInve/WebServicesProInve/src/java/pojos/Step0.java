@@ -65,7 +65,5 @@ public class Step0 {
 
     public void setPlazo(Integer plazo) {
         this.plazo = plazo;
-    }
-    
-    
+    }       
 }
