@@ -21,17 +21,17 @@ public class Step1 {
     String nombre_empresa;
     String correo;
     String telefono;
-    Integer codigo_verificacion;
-    Boolean estado_codigo;
+    Integer id_codigo_verificacion;    
     byte[] firma;
+    Integer id_step1;
+    Integer id_step0;
     
     public Step1(){        
     }
 
-    public Step1(String nombre, String apellido_paterno, String apellido_materno,
-            String rfc, Date fecha_nacimiento, String profesion, 
-            String nombre_empresa, String correo, String telefono) {
+    public Step1(String nombre, String apellido_paterno, String apellido_materno, String rfc, Date fecha_nacimiento, String profesion, String nombre_empresa, String correo, String telefono, Integer id_codigo_verificacion, byte[] firma, Integer id_step1, Integer id_step0) {
         this.nombre = nombre;
+        this.apellido_paterno = apellido_paterno;
         this.apellido_materno = apellido_materno;
         this.rfc = rfc;
         this.fecha_nacimiento = fecha_nacimiento;
@@ -39,9 +39,48 @@ public class Step1 {
         this.nombre_empresa = nombre_empresa;
         this.correo = correo;
         this.telefono = telefono;
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        
+        this.id_codigo_verificacion = id_codigo_verificacion;
+        this.firma = firma;
+        this.id_step1 = id_step1;
+        this.id_step0 = id_step0;
+    }        
+
+    public Step1(String nombre, String apellido_paterno, String apellido_materno, String rfc, Date fecha_nacimiento, String profesion, String nombre_empresa, String correo, String telefono, Integer id_step1) {
+        this.nombre = nombre;
+        this.apellido_paterno = apellido_paterno;
+        this.apellido_materno = apellido_materno;
+        this.rfc = rfc;
+        this.fecha_nacimiento = fecha_nacimiento;
+        this.profesion = profesion;
+        this.nombre_empresa = nombre_empresa;
+        this.correo = correo;
+        this.telefono = telefono;
+        this.id_step1 = id_step1;
+    }        
+
+    public Integer getId_codigo_verificacion() {
+        return id_codigo_verificacion;
     }
+
+    public void setId_codigo_verificacion(Integer id_codigo_verificacion) {
+        this.id_codigo_verificacion = id_codigo_verificacion;
+    }
+
+    public Integer getId_step1() {
+        return id_step1;
+    }
+
+    public void setId_step1(Integer id_step1) {
+        this.id_step1 = id_step1;
+    }
+
+    public Integer getId_step0() {
+        return id_step0;
+    }
+
+    public void setId_step0(Integer id_step0) {
+        this.id_step0 = id_step0;
+    }   
 
     public String getNombre() {
         return nombre;
@@ -113,24 +152,8 @@ public class Step1 {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
-
-    public Integer getCodigo_verificacion() {
-        return codigo_verificacion;
-    }
-
-    public void setCodigo_verificacion(Integer codigo_verificacion) {
-        this.codigo_verificacion = codigo_verificacion;
-    }
-
-    public Boolean getEstado_codigo() {
-        return estado_codigo;
-    }
-
-    public void setEstado_codigo(Boolean estado_codigo) {
-        this.estado_codigo = estado_codigo;
-    }
-
+    }   
+    
     public byte[] getFirma() {
         return firma;
     }

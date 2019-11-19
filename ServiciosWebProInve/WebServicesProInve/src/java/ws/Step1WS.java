@@ -54,6 +54,7 @@ public class Step1WS {
         SqlSession conn = MyBatisUtil.getSession();
         try{
             conn.insert("Step1.guardarStep1", inversionista);
+            //conn.insert("Step1.proAlmGuardarStep1", inversionista);
             conn.commit();
             mensajeResultado = new Mensaje(false, "Datos registrados correctamente Step 1");
         }catch(Exception ex){

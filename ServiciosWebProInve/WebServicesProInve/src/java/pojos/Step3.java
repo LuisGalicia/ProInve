@@ -10,7 +10,7 @@ package pojos;
  * @author Jahir
  */
 public class Step3 {
-    Integer id_direccion;
+    Integer id_step3;
     String calle;
     Integer numero;
     Integer id_codigo_postal;
@@ -19,23 +19,21 @@ public class Step3 {
     public Step3(){        
     }
 
-    public Step3(Integer id_direccion, String calle, Integer numero,
-            Integer id_codigo_postal, Integer id_step1) {
-        this.id_direccion = id_direccion;
+    public Step3(Integer id_step3, String calle, Integer numero, Integer id_codigo_postal, Integer id_step1) {
+        this.id_step3 = id_step3;
         this.calle = calle;
         this.numero = numero;
         this.id_codigo_postal = id_codigo_postal;
         this.id_step1 = id_step1;
-    }
-
+    }   
     
-    public Integer getId_direccion() {
-        return id_direccion;
+    public Integer getId_step3() {
+        return id_step3;
     }
 
-    public void setId_direccion(Integer id_direccion) {
-        this.id_direccion = id_direccion;
-    }
+    public void setId_step3(Integer id_step3) {
+        this.id_step3 = id_step3;
+    }        
 
     public String getCalle() {
         return calle;
