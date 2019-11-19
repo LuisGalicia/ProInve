@@ -8,8 +8,13 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 
-<mapper namespace="Step0">                
+<mapper namespace="Step0">         
+    <insert id="guardarStep0" parameterType="pojos.Step0">
+        INSERT INTO ProInver.dbo.Step0 (Id_Tipo_Inversion, Id_Origen, Monto_Inversion, Plazo) 
+        VALUES(#{id_tipo_inversion}, #{id_origen}, #{monto_inversion}, #{plazo})
+    </insert>  
+           
     <insert id="proAlmGuardarStep0" statementType="CALLABLE" parameterType="pojos.Step0">
-        call SPIStep0(#{}, #{}, #{}, #{}, #{}, #{})
+        call ProInver.dbo.SPStep0(#{id_tipo_inversion}, #{id_origen}, #{monto_inversion}, #{plazo})
     </insert>    
 </mapper>

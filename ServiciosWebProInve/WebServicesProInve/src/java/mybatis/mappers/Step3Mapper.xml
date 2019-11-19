@@ -10,12 +10,7 @@ and open the template in the editor.
 
 <mapper namespace="Step3">        
     <insert id="guardarStep3" parameterType="pojos.Step3">
-        INSERT INTO ProInver.dbo.Step1 (id_direccion, calle, numero, id_codigo_postal, id_step1) 
-        VALUES(#{id_direccion}, #{calle}, #{numero}, #{id_codigo_postal}, #{id_step1})
-    </insert>    
-    
-    <insert id="proAlmGuardarStep3" statementType="CALLABLE" parameterType="pojos.Step3">
-        call SPIStep3(#{}, #{}, #{}, #{}, #{}, #{})
-    </insert>
-    
+        INSERT INTO ProInver.dbo.Step3 (Calle, Numero, Id_Codigo_Postal, Id_Step1) 
+        VALUES(#{calle}, #{numero}, #{id_codigo_postal}, #{id_step1})
+    </insert>        
 </mapper>

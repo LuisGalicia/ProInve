@@ -9,8 +9,7 @@ package pojos;
  *
  * @author Jahir
  */
-public class Step0 {
-    Integer id_step;
+public class Step0 {    
     Integer id_tipo_inversion;
     Integer id_origen;
     Integer monto_inversion;
@@ -19,21 +18,12 @@ public class Step0 {
     public Step0() {
     }
 
-    public Step0(Integer id_step, Integer id_tipo_inversion, Integer id_origen, Integer monto_inversion, Integer plazo) {
-        this.id_step = id_step;
+    public Step0(Integer id_tipo_inversion, Integer id_origen, Integer monto_inversion, Integer plazo) {
         this.id_tipo_inversion = id_tipo_inversion;
         this.id_origen = id_origen;
         this.monto_inversion = monto_inversion;
         this.plazo = plazo;
     }        
-
-    public Integer getId_step() {
-        return id_step;
-    }
-
-    public void setId_step(Integer id_step) {
-        this.id_step = id_step;
-    }
 
     public Integer getId_tipo_inversion() {
         return id_tipo_inversion;

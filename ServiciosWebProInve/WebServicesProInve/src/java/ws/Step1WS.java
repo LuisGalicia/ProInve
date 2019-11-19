@@ -14,7 +14,6 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
 import mybatis.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
@@ -76,8 +75,8 @@ public class Step1WS {
         
         SqlSession conn = MyBatisUtil.getSession();
         try{
+            //conn.insert("Step1.guardarStep1", inversionista);
             conn.insert("Step1.guardarStep1", inversionista);
-            //conn.insert("Step1.proAlmGuardarStep1", inversionista);
             conn.commit();
             mensajeResultado = new Mensaje(false, "Datos registrados correctamente Step 1");
         }catch(Exception ex){
