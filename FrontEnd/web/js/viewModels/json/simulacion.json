@@ -1,30 +1,25 @@
 [
     {
-        "id": 0,
         "seleccion": "Otros Plazos",
         "plazo": "1 Año",
         "value": 10400
     },
     {
-        "id": 1,
         "seleccion": "Plazo Seleccionado",
         "plazo": "2 Años",
         "value": 11500
     },
     {
-        "id": 2,
         "seleccion": "Otros Plazos",
         "plazo": "3 Años",
         "value": 15400
     },
     {
-        "id": 3,
         "seleccion": "Otros Plazos",
         "plazo": "4 Años",
         "value": 17800
     },
     {
-        "id": 4,
         "seleccion": "Otros Plazos",
         "plazo": "5 Años",
         "value": 18455

@@ -1,24 +1,20 @@
 [
     {
-        "id": 0,
         "seleccion": "Tipo de inversión 1",
         "tipoinversion": "Tipo de inversión 1",
         "value": 14000
     },
     {
-        "id": 1,
         "seleccion": "Tipo de inversión 2",
         "tipoinversion": "Tipo de inversión 2",
         "value": 11500
     },
     {
-        "id": 2,
         "seleccion": "Tipo de inversión 3",
         "tipoinversion": "Tipo de inversión 3",
         "value": 15400
     },
     {
-        "id": 3,
         "seleccion": "Tipo de inversión 4",
         "tipoinversion": "Tipo de inversión 4",
         "value": 17800

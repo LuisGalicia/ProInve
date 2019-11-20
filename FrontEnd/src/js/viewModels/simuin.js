@@ -30,6 +30,10 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider', 'text!../
         document.getElementById('modalsimulador').close();
       }
 
+      this.getGraficaSimulacion = function (event) {
+        getGraficas(3, 200000, 'wacha');
+      }
+
       this.openSimu = function (event) {
         document.getElementById('modalsimulador').open();
       }
@@ -50,7 +54,35 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider', 'text!../
       orientationValue = ko.observable('vertical');
       stackValue = ko.observable('off');
       dataSimulacion = new ArrayDataProvider(JSON.parse(dataSimu), { keyAttributes: 'id' });
+
       dataComparacion = new ArrayDataProvider(JSON.parse(dataComp), { keyAttributes: 'id' });
+
+      function getGraficas(plazoParam, importeParam, importeParam) {
+        // Post a user
+        var url = "http://localhost:8085/WebServicesProInve/webresources/graficas/simulacion";
+
+        var data = {};
+        data.plazo = plazoParam;
+        data.importe = importeParam;
+        data.tipoinversion = importeParam;
+        var json = JSON.stringify(data);
+        console.log(json)
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded', );
+        xhr.timeout = 120000; //milliseconds
+        xhr.onload = function () {
+          var datas = JSON.parse(xhr.responseText);
+          if (xhr.readyState == 4 && xhr.status == "201") {
+            dataSimulacion = new ArrayDataProvider(JSON.parse(datas), { keyAttributes: 'id' });
+            openSimu();
+          } else {
+            console.error(datas + "ERRRRRRROR");
+          }
+        }
+        xhr.send(json);
+      }
 
 
       self.connected = function () {
