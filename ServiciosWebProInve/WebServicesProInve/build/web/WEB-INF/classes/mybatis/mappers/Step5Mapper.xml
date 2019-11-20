@@ -10,11 +10,7 @@ and open the template in the editor.
 
 <mapper namespace="Step5">        
     <insert id="guardarStep5" parameterType="pojos.Step5">
-        INSERT INTO ProInver.dbo.Step1 (id_documento, id_step1, documento) 
-        VALUES(#{id_documento}, #{id_step1}, #{documento})
-    </insert>  
-    
-    <insert id="proAlmGuardarStep5" statementType="CALLABLE" parameterType="pojos.Step5">
-        call SPIStep5(#{}, #{}, #{}, #{}, #{}, #{})
-    </insert>         
+        INSERT INTO ProInver.dbo.Step5 (id_step1, documento) 
+        VALUES(#{id_step1}, #{documento})
+    </insert>   
 </mapper>

@@ -10,26 +10,15 @@ package pojos;
  * @author Jahir
  */
 public class Step5 {
-    Integer id_documento;
     Integer id_step1;
     String documento;
     
     public Step5(){        
     }
 
-    public Step5(Integer id_documento, Integer id_step1, String documento) {
-        this.id_documento = id_documento;
+    public Step5(Integer id_step1, String documento) {
         this.id_step1 = id_step1;
         this.documento = documento;
-    }
-
-    
-    public Integer getId_documento() {
-        return id_documento;
-    }
-
-    public void setId_documento(Integer id_documento) {
-        this.id_documento = id_documento;
     }
 
     public Integer getId_step1() {
@@ -46,6 +35,5 @@ public class Step5 {
 
     public void setDocumento(String documento) {
         this.documento = documento;
-    }
-        
+    }        
 }

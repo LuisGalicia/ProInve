@@ -25,6 +25,8 @@ and open the template in the editor.
         <mapper resource="mybatis/mappers/DireccionMapper.xml"/>
         <mapper resource="mybatis/mappers/Step0Mapper.xml"/>
         <mapper resource="mybatis/mappers/Step1Mapper.xml"/>
-        
+        <mapper resource="mybatis/mappers/Step3Mapper.xml"/>
+        <mapper resource="mybatis/mappers/Step4Mapper.xml"/>
+        <mapper resource="mybatis/mappers/Step5Mapper.xml"/>
     </mappers>
 </configuration>
