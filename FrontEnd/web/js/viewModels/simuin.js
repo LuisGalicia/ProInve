@@ -37,6 +37,10 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider', 'text!../
       this.openSimu = function (event) {
         document.getElementById('modalsimulador').open();
       }
+     
+      this.direccionSolicitud = function (event) {
+        router.stateId('soliin');
+      }
 
       this.closeCompa = function (event) {
         document.getElementById('modalcomparar').close();
