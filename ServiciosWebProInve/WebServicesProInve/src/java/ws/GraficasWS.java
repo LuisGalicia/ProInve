@@ -6,7 +6,7 @@
 package ws;
 
 import com.google.gson.Gson;
-import entidades.Simulacion;
+import pojos.Simulacion;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.core.Context;
@@ -68,7 +68,7 @@ public class GraficasWS {
                 value = listaSimulados.get(i-2).getValue();
                 simulado.setValue((value*valorInversion) + value);
             }
-            simulado.setPlazo(plazo);
+            simulado.setPlazo(i);
             listaSimulados.add(simulado);  
         }
         return listaSimulados;
