@@ -16,6 +16,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider', 'text!../
 
     function SimuinViewModel() {
       var self = this;
+      var o;
 
       var smQuery = oj.ResponsiveUtils.getFrameworkQuery(oj.ResponsiveUtils.FRAMEWORK_QUERY_KEY.SM_ONLY);
       self.smScreen = oj.ResponsiveKnockoutUtils.createMediaQueryObservable(smQuery);
@@ -30,11 +31,11 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider', 'text!../
         document.getElementById('modalsimulador').close();
       }
 
-      this.getGraficaSimulacion = function (event) {
+      this.getGraficaSimulacions = function (event) {
         getGraficas(3, 200000, 'wacha');
       }
 
-      this.openSimu = function (event) {
+      function openSimu(){
         document.getElementById('modalsimulador').open();
       }
      
@@ -57,29 +58,33 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider', 'text!../
 
       orientationValue = ko.observable('vertical');
       stackValue = ko.observable('off');
-      dataSimulacion = new ArrayDataProvider(JSON.parse(dataSimu), { keyAttributes: 'id' });
+      dataSimulacion = ko.observable();
 
       dataComparacion = new ArrayDataProvider(JSON.parse(dataComp), { keyAttributes: 'id' });
 
-      function getGraficas(plazoParam, importeParam, importeParam) {
+      function getGraficas(plazoParam, importeParam, tipoinversionParam) {
         // Post a user
         var url = "http://localhost:8085/WebServicesProInve/webresources/graficas/simulacion";
 
-        var data = {};
-        data.plazo = plazoParam;
-        data.importe = importeParam;
-        data.tipoinversion = importeParam;
-        var json = JSON.stringify(data);
+        var data = [];
+
+        data.push(encodeURIComponent("plazo") + "=" + encodeURIComponent(plazoParam));
+        data.push(encodeURIComponent("importe") + "=" + encodeURIComponent(importeParam));
+        data.push(encodeURIComponent("tipoinversion") + "=" + encodeURIComponent(tipoinversionParam));
+
+        var json = data.join('&').replace(/%20/g,'+');
         console.log(json)
 
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", url, true);
+        xhr.open("POST", url);
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded', );
         xhr.timeout = 120000; //milliseconds
+        
         xhr.onload = function () {
-          var datas = JSON.parse(xhr.responseText);
-          if (xhr.readyState == 4 && xhr.status == "201") {
-            dataSimulacion = new ArrayDataProvider(JSON.parse(datas), { keyAttributes: 'id' });
+          var datas = this.response;
+          if (xhr.status >= 200 && xhr.status < 300) {
+            console.error(datas + ":datos mostrados:");
+            dataSimulacion(new ArrayDataProvider(JSON.parse(datas), { keyAttributes: 'plazo' }));
             openSimu();
           } else {
             console.error(datas + "ERRRRRRROR");

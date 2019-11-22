@@ -6,6 +6,7 @@
 package ws;
 
 import com.google.gson.Gson;
+import java.sql.DatabaseMetaData;
 import pojos.Simulacion;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,12 +46,9 @@ public class GraficasWS {
     @Path("simulacion")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Simulacion> guardarDatos(
-        @FormParam("datosRecuperados") String datosRecuperados){        
-        Gson gson = new Gson();
-        Simulacion simulacion = gson.fromJson(datosRecuperados, Simulacion.class);
-        int importe = simulacion.getImporte();
-        int plazo = simulacion.getPlazo();
-        float valorInversion = valorInversion(simulacion.getTipoinversion());
+        @FormParam("plazo") Integer plazo,
+            @FormParam("importe") Integer importe,
+            @FormParam("tipoinversion") String tipo){        
         List<Simulacion> listaSimulados = new ArrayList();
         for (int i = 1; i <= 5; i++) {
             Simulacion simulado = new Simulacion();
@@ -62,11 +60,11 @@ public class GraficasWS {
                 simulado.setSeleccion("Otros Plazos");
             }
             if(i == 1) {
-               value = (importe*valorInversion) + importe; 
+               value = (importe*valorInversion(tipo)) + importe; 
                simulado.setValue(value);
             } else {
                 value = listaSimulados.get(i-2).getValue();
-                simulado.setValue((value*valorInversion) + value);
+                simulado.setValue((value*valorInversion(tipo)) + value);
             }
             simulado.setPlazo(i);
             listaSimulados.add(simulado);  
