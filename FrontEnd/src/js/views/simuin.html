@@ -2,6 +2,39 @@
  Copyright (c) 2014, 2019, Oracle and/or its affiliates.
  The Universal Permissive License (UPL), Version 1.0
  -->
+
+<style>
+  .modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+  }
+
+  /* Modal Content/Box */
+  .modal-content {
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    /* Could be more or less, depending on screen size */
+  }
+</style>
 <div class="oj-hybrid-padding" style="padding-top: 10px">
   <oj-form-layout style="padding-left: 5%" align="left" direction="row">
 
@@ -26,74 +59,82 @@
       <oj-option value="IS">Tipo de inversión 4</oj-option>
     </oj-combobox-one>
     <div style="padding-left: 10px; padding-bottom: 20px;">
-    <oj-table id='table' aria-label='Tipos de inversión' data='[[dataprovider]]'
-      selection-mode='{"row": "multiple", "column": "multiple"}' dnd='{"reorder": {"columns": "enabled"}}'
-      scroll-policy='loadMoreOnScroll' scroll-policy-options='{"fetchSize": 10}' columns='[{"headerText": "Tipos de inversión", 
+      <oj-table id='table' aria-label='Tipos de inversión' data='[[dataprovider]]'
+        selection-mode='{"row": "multiple", "column": "multiple"}' dnd='{"reorder": {"columns": "enabled"}}'
+        scroll-policy='loadMoreOnScroll' scroll-policy-options='{"fetchSize": 10}' columns='[{"headerText": "Tipos de inversión", 
                  "field": "tipoinversion",
                  "headerClassName": "oj-sm-only-hide",
                  "className": "oj-sm-only-hide",
                  "resizable": "enabled"}]' style='width: 100%; background-color: white;'>
-    </oj-table><br />
+      </oj-table><br />
     </div>
     <div>
-      <oj-button id='iniciarsimulacion' class="oj-button-primary oj-button-lg" on-oj-action="[[getGraficaSimulacions]]">INICIAR
+      <oj-button id='iniciarsimulacion' class="oj-button-primary oj-button-lg" on-oj-action="[[getGraficaSimulacions]]">
+        INICIAR
         SIMULACION</oj-button>
-      <oj-button id='iniciarcomparacion' class="oj-button-primary oj-button-lg" on-oj-action="[[openCompa]]">COMPARAR TIPOS DE INVERSIÓN</oj-button>
+      <oj-button id='iniciarcomparacion' class="oj-button-primary oj-button-lg" on-oj-action="[[openCompa]]">COMPARAR
+        TIPOS DE INVERSIÓN</oj-button>
     </div>
   </oj-form-layout>
 
-  <oj-dialog style="display:none;width:900px;height:600px;" id="modalsimulador" dialog-title="Plazos de inversión">
-    <div slot="body">
+  <div id="modalsimu" class="modal">
+    <oj-dialog class="modal-content" id="modalsimulador" dialog-title="Plazos de inversión">
+      <div slot="body">
 
-      <div id='graficasimulacion'>
+        <div id='graficasimulacion'>
 
-        <oj-chart id="barChart" type="bar" orientation="[[orientationValue]]" stack="[[stackValue]]"
-          data="[[dataSimulacion]]" animation-on-display="auto" animation-on-data-change="auto" hover-behavior="dim"
-          style="width:100%;height:400px;">
+          <oj-chart id="barChart" type="bar" orientation="[[orientationValue]]" stack="[[stackValue]]"
+            data="[[dataSimulacion]]" animation-on-display="auto" animation-on-data-change="auto" hover-behavior="dim"
+            style="width:100%;height:400px;">
 
-          <template slot='itemTemplate' data-oj-as='item'>
-            <oj-chart-item value='[[item.data.value]]' group-id='[[ [item.data.plazo] ]]'
-              series-id='[[item.data.seleccion]]'>
-            </oj-chart-item>
-          </template>
-        </oj-chart>
+            <template slot='itemTemplate' data-oj-as='item'>
+              <oj-chart-item value='[[item.data.value]]' group-id='[[ [item.data.plazo] ]]'
+                series-id='[[item.data.seleccion]]'>
+              </oj-chart-item>
+            </template>
+          </oj-chart>
 
-      </div>
-
-    </div>
-    <div slot="footer">
-      <oj-button id="okButton" class="oj-button-primary oj-button-lg" on-oj-action="[[direccionSolicitud]]">Invertir Ahora
-      </oj-button>
-      <oj-button id="okButton" class="oj-button-lg" on-oj-action="[[closeSimu]]">Cerrar
-      </oj-button>
-    </div>
-  </oj-dialog>
-
-  <oj-dialog style="display:none;width:900px;height:600px;" id="modalcomparar" dialog-title="Tipos de inversión">
-    <div slot="body">
-
-      <div id='graficacomparacion'>
-
-        <oj-chart id="barChart2" type="bar" orientation="[[orientationValue]]" stack="[[stackValue]]"
-          data="[[dataComparacion]]" animation-on-display="auto" animation-on-data-change="auto" hover-behavior="dim"
-          style="width:100%;height:400px;">
-
-          <template slot='itemTemplate' data-oj-as='item'>
-            <oj-chart-item value='[[item.data.value]]' group-id='[[ [item.data.tipoinversion] ]]'
-              series-id='[[item.data.seleccion]]'>
-            </oj-chart-item>
-          </template>
-        </oj-chart>
+        </div>
 
       </div>
+      <div slot="footer">
+        <oj-button id="okButton" class="oj-button-primary oj-button-lg" on-oj-action="[[direccionSolicitud]]">Invertir
+          Ahora
+        </oj-button>
+        <oj-button id="okButton" class="oj-button-lg" on-oj-action="[[closeSimu]]">Cerrar
+        </oj-button>
+      </div>
+    </oj-dialog>
+  </div>
 
-    </div>
-    <div slot="footer">
-      <oj-button id="okButton" class="oj-button-primary oj-button-lg" on-oj-action="[[direccionSolicitud]]">Invertir Ahora
-      </oj-button>
-      <oj-button id="okButton" class="oj-button-lg" on-oj-action="[[closeCompa]]">Cerrar
-      </oj-button>
-    </div>
-  </oj-dialog>
+  <div id="modalcompa" class="modal">
+    <oj-dialog class="modal-content" id="modalcomparar" dialog-title="Tipos de inversión">
+      <div slot="body">
+
+        <div id='graficacomparacion'>
+
+          <oj-chart id="barChart2" type="bar" orientation="[[orientationValue]]" stack="[[stackValue]]"
+            data="[[dataComparacion]]" animation-on-display="auto" animation-on-data-change="auto" hover-behavior="dim"
+            style="width:100%;height:400px;">
+
+            <template slot='itemTemplate' data-oj-as='item'>
+              <oj-chart-item value='[[item.data.value]]' group-id='[[ [item.data.tipoinversion] ]]'
+                series-id='[[item.data.seleccion]]'>
+              </oj-chart-item>
+            </template>
+          </oj-chart>
+
+        </div>
+
+      </div>
+      <div slot="footer">
+        <oj-button id="okButton" class="oj-button-primary oj-button-lg" on-oj-action="[[direccionSolicitud]]">Invertir
+          Ahora
+        </oj-button>
+        <oj-button id="okButton" class="oj-button-lg" on-oj-action="[[closeCompa]]">Cerrar
+        </oj-button>
+      </div>
+    </oj-dialog>
+  </div>
 
 </div>
