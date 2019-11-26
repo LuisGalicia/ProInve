@@ -14,7 +14,11 @@ and open the template in the editor.
         VALUES(#{id_tipo_inversion}, #{id_origen}, #{monto_inversion}, #{plazo})
     </insert>  
            
-    <insert id="proAlmGuardarStep0" statementType="CALLABLE" parameterType="pojos.Step0">
-        {call ProInver.dbo.SPStep0(#{id_tipo_inversion}, #{id_origen}, #{monto_inversion}, #{plazo})}
-    </insert>    
+    <update id="proAlmGuardarStep0" statementType="CALLABLE" parameterType="pojos.Step0">
+        {CALL ProInver.dbo.SPStep0(
+        #{id_tipo_inversion,jdbcType=INTEGER,mode=IN}, 
+        #{id_origen,jdbcType=INTEGER,mode=IN}, 
+        #{monto_inversion,jdbcType=INTEGER,mode=IN}, 
+        #{plazo,jdbcType=INTEGER,mode=IN})}
+    </update>    
 </mapper>

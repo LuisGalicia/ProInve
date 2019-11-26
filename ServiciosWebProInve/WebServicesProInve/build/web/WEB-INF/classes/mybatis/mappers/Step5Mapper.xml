@@ -13,4 +13,10 @@ and open the template in the editor.
         INSERT INTO ProInver.dbo.Step5 (id_step1, documento) 
         VALUES(#{id_step1}, #{documento})
     </insert>   
+    
+    <update id="proAlmGuardarStep5" statementType="CALLABLE" parameterType="pojos.Step5">
+        {CALL ProInver.dbo.SPIStep5(
+        #{id_step1,jdbcType=INTEGER,mode=IN},  
+        #{documento,jdbcType=VARCHAR,mode=IN})}
+    </update>
 </mapper>

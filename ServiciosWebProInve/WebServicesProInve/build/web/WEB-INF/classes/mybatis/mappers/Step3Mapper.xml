@@ -13,4 +13,12 @@ and open the template in the editor.
         INSERT INTO ProInver.dbo.Step3 (Calle, Numero, Id_Codigo_Postal, Id_Step1) 
         VALUES(#{calle}, #{numero}, #{id_codigo_postal}, #{id_step1})
     </insert>        
+    
+    <update id="proAlmGuardarStep3" statementType="CALLABLE" parameterType="pojos.Step3">
+        {CALL ProInver.dbo.SPIStep3(
+        #{calle,jdbcType=VARCHAR,mode=IN}, 
+        #{numero,jdbcType=INTEGER,mode=IN}, 
+        #{id_codigo_postal,jdbcType=INTEGER,mode=IN}, 
+        #{id_step1,jdbcType=INTEGER,mode=IN})}
+    </update> 
 </mapper>
