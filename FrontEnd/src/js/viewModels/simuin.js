@@ -18,10 +18,6 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider', 'text!../
       var self = this;
       var o;
 
-      this.importe = ko.observable();
-      this.plazo = ko.observable();
-      this.tipo = ko.observable();
-
       var smQuery = oj.ResponsiveUtils.getFrameworkQuery(oj.ResponsiveUtils.FRAMEWORK_QUERY_KEY.SM_ONLY);
       self.smScreen = oj.ResponsiveKnockoutUtils.createMediaQueryObservable(smQuery);
 
@@ -36,7 +32,11 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider', 'text!../
       }
 
       this.getGraficaSimulacions = function (event) {
-        getGraficas(this.plazo, this.importe, this.tipo);
+        var importe = $("#importeinput").val();
+        var plazo = $("#plazoinversioninput").val();
+        var tipo = $("#tipoinversioninput").val();
+
+        getGraficas(plazo, importe, tipo);
       }
 
       function openSimu(){
@@ -80,7 +80,6 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider', 'text!../
         data.push(encodeURIComponent("tipoinversion") + "=" + encodeURIComponent(tipoinversionParam));
 
         var json = data.join('&').replace(/%20/g,'+');
-        console.log(json)
 
         var xhr = new XMLHttpRequest();
         xhr.open("POST", url);
