@@ -9,6 +9,13 @@ and open the template in the editor.
 -->
 
 <mapper namespace="direccion">        
-    
+    <select id="getAllCP" resultType="pojos.CodigoPostal">
+        SELECT
+        CodigoPostal.id_codigo_postal,
+        CodigoPostal.id_municipio,
+        CodigoPostal.codigo_postal,
+        CodigoPostal.colonia
+        FROM CodigoPostal
+    </select>
 </mapper>
 

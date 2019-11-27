@@ -49,7 +49,7 @@ public class Step1WS {
         @FormParam("datosRecuperados") String datosRecuperados){        
         Gson gson = new Gson();        
         Step0 step0 = gson.fromJson(datosRecuperados, Step0.class);        
-        Mensaje mensajeResultado = Step0DAO.guardarStep0(step0);               
+        Mensaje mensajeResultado = Step0DAO.guardarStep0(step0);       
         return mensajeResultado;
     }
     
