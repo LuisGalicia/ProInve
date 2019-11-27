@@ -18,6 +18,10 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider', 'text!../
       var self = this;
       var o;
 
+      this.importe = ko.observable();
+      this.plazo = ko.observable();
+      this.tipo = ko.observable();
+
       var smQuery = oj.ResponsiveUtils.getFrameworkQuery(oj.ResponsiveUtils.FRAMEWORK_QUERY_KEY.SM_ONLY);
       self.smScreen = oj.ResponsiveKnockoutUtils.createMediaQueryObservable(smQuery);
 
@@ -32,7 +36,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider', 'text!../
       }
 
       this.getGraficaSimulacions = function (event) {
-        getGraficas(3, 200000, 'wacha');
+        getGraficas(this.plazo, this.importe, this.tipo);
       }
 
       function openSimu(){
@@ -63,6 +67,9 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider', 'text!../
       dataComparacion = new ArrayDataProvider(JSON.parse(dataComp), { keyAttributes: 'id' });
 
       function getGraficas(plazoParam, importeParam, tipoinversionParam) {
+
+        console.log(plazoParam, importeParam, tipoinversionParam);
+
         // Post a user
         var url = "http://localhost:8085/WebServicesProInve/webresources/graficas/simulacion";
 
