@@ -6,17 +6,18 @@
 package ws;
 
 import com.google.gson.Gson;
-import java.util.Date;
+import dao.Step0DAO;
+import dao.Step1DAO;
+import dao.Step3DAO;
+import dao.Step4DAO;
+import dao.Step5DAO;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
-import mybatis.MyBatisUtil;
-import org.apache.ibatis.session.SqlSession;
 import pojos.Mensaje;
 import pojos.Step0;
 import pojos.Step1;
@@ -46,44 +47,20 @@ public class Step1WS {
     @Produces(MediaType.APPLICATION_JSON)
     public Mensaje guardarDatos(
         @FormParam("datosRecuperados") String datosRecuperados){        
-        Gson gson = new Gson();
-        Mensaje mensajeResultado = new Mensaje();
-        Step0 datosStep0 = gson.fromJson(datosRecuperados, Step0.class);
-        
-        SqlSession conn = MyBatisUtil.getSession();
-        try{
-            conn.insert("Step0.guardarStep0", datosStep0);
-            conn.commit();
-            mensajeResultado = new Mensaje(false, "Datos registrados correctamente Step 0");
-        }catch(Exception ex){
-            mensajeResultado = new Mensaje(true, ex.getMessage());
-        }finally{
-            conn.close();
-        }        
+        Gson gson = new Gson();        
+        Step0 step0 = gson.fromJson(datosRecuperados, Step0.class);        
+        Mensaje mensajeResultado = Step0DAO.guardarStep0(step0);               
         return mensajeResultado;
     }
-
     
     @POST
     @Path("step1")
     @Produces(MediaType.APPLICATION_JSON)
     public Mensaje guardarDatosInversionista(
         @FormParam("datosRecuperados") String datosRecuperados){
-        Gson gson = new Gson();
-        Mensaje mensajeResultado = new Mensaje();
-        Step1 inversionista = gson.fromJson(datosRecuperados, Step1.class);
-        
-        SqlSession conn = MyBatisUtil.getSession();
-        try{
-            //conn.insert("Step1.guardarStep1", inversionista);
-            conn.insert("Step1.guardarStep1", inversionista);
-            conn.commit();
-            mensajeResultado = new Mensaje(false, "Datos registrados correctamente Step 1");
-        }catch(Exception ex){
-            mensajeResultado = new Mensaje(true, ex.getMessage());
-        }finally{
-            conn.close();
-        }        
+        Gson gson = new Gson();        
+        Step1 step1 = gson.fromJson(datosRecuperados, Step1.class);        
+        Mensaje mensajeResultado = Step1DAO.guardarStep1(step1);               
         return mensajeResultado;
     }     
     
@@ -92,21 +69,9 @@ public class Step1WS {
     @Produces(MediaType.APPLICATION_JSON)
     public Mensaje guardarDatosDireccion(
         @FormParam("datosRecuperados") String datosRecuperados){
-        //aquí no me pidió la misma excepción que en el método guardarDatosInversionista
-        Gson gson = new Gson();
-        Mensaje mensajeResultado = new Mensaje();
-        Step3 direccion = gson.fromJson(datosRecuperados, Step3.class);
-        
-        SqlSession conn = MyBatisUtil.getSession();
-        try{
-            conn.insert("Step3.guardarStep3", direccion);
-            conn.commit();
-            mensajeResultado = new Mensaje(false, "Datos registrados correctamente Step 3");
-        }catch(Exception ex){
-            mensajeResultado = new Mensaje(true, ex.getMessage());
-        }finally{
-            conn.close();
-        }        
+        Gson gson = new Gson();        
+        Step3 step3 = gson.fromJson(datosRecuperados, Step3.class);        
+        Mensaje mensajeResultado = Step3DAO.guardarStep3(step3);               
         return mensajeResultado;
     }
     
@@ -115,20 +80,9 @@ public class Step1WS {
     @Produces(MediaType.APPLICATION_JSON)
     public Mensaje guardarDatosFinancieros(
         @FormParam("datosRecuperados") String datosRecuperados){
-        Gson gson = new Gson();
-        Mensaje mensajeResultado = new Mensaje();
-        Step4 inversion = gson.fromJson(datosRecuperados, Step4.class);
-        
-        SqlSession conn = MyBatisUtil.getSession();
-        try{
-            conn.insert("Step4.guardarStep4", inversion);
-            conn.commit();
-            mensajeResultado = new Mensaje(false, "Datos registrados correctamente Step 4");
-        }catch(Exception ex){
-            mensajeResultado = new Mensaje(true, ex.getMessage());
-        }finally{
-            conn.close();
-        }        
+        Gson gson = new Gson();        
+        Step4 step4 = gson.fromJson(datosRecuperados, Step4.class);        
+        Mensaje mensajeResultado = Step4DAO.guardarStep4(step4);               
         return mensajeResultado;
     }
     
@@ -137,21 +91,9 @@ public class Step1WS {
     @Produces(MediaType.APPLICATION_JSON)
     public Mensaje guardarComprobantes(
         @FormParam("datosRecuperados") String datosRecuperados){
-        //aquí no me pidió la misma excepción que en el método guardarDatosInversionista
-        Gson gson = new Gson();
-        Mensaje mensajeResultado = new Mensaje();
-        Step5 documento = gson.fromJson(datosRecuperados, Step5.class);
-        
-        SqlSession conn = MyBatisUtil.getSession();
-        try{
-            conn.insert("Step5.guardarStep5", documento);
-            conn.commit();
-            mensajeResultado = new Mensaje(false, "Datos registrados correctamente Step 5");
-        }catch(Exception ex){
-            mensajeResultado = new Mensaje(true, ex.getMessage());
-        }finally{
-            conn.close();
-        }        
+        Gson gson = new Gson();        
+        Step5 step5 = gson.fromJson(datosRecuperados, Step5.class);        
+        Mensaje mensajeResultado = Step5DAO.guardarStep5(step5);               
         return mensajeResultado;
     }
 }

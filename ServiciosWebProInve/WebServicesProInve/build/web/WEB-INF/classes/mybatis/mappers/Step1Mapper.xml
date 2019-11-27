@@ -14,8 +14,18 @@ and open the template in the editor.
         VALUES(#{nombre}, #{apellido_paterno}, #{apellido_materno}, #{rfc}, #{fecha_nacimiento}, #{profesion}, #{nombre_empresa}, #{correo}, #{telefono}, #{id_step0})
     </insert>    
         
-    <!--<insert id="proAlmGuardarStep1" statementType="CALLABLE" parameterType="pojos.Step1">
-        call SPIStep1(#{nombre}, #{apellido_paterno}, #{apellido_materno}, #{rfc},  #{fecha_nacimiento}, #{profesion}, #{nombre_empresa}, #{correo}, #{telefono}, #{id_step0})
-    </insert>-->
+    <update id="proAlmGuardarStep1" statementType="CALLABLE" parameterType="pojos.Step1">
+        {CALL ProInver.dbo.SPIStep1(
+        #{nombre,jdbcType=VARCHAR,mode=IN}, 
+        #{apellido_paterno,jdbcType=VARCHAR,mode=IN}, 
+        #{apellido_materno,jdbcType=VARCHAR,mode=IN}, 
+        #{rfc,jdbcType=VARCHAR,mode=IN},  
+        #{fecha_nacimiento,jdbcType=DATE,mode=IN}, 
+        #{profesion,jdbcType=VARCHAR,mode=IN}, 
+        #{nombre_empresa,jdbcType=VARCHAR,mode=IN}, 
+        #{correo,jdbcType=VARCHAR,mode=IN}, 
+        #{telefono,jdbcType=VARCHAR,mode=IN}, 
+        #{id_step0},jdbcType=INTEGER,mode=IN})}
+    </update>
     
 </mapper>
