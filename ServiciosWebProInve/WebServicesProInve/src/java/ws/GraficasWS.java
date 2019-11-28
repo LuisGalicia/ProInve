@@ -6,6 +6,7 @@
 package ws;
 
 import com.google.gson.Gson;
+import dao.GraficaDAO;
 import java.sql.DatabaseMetaData;
 import pojos.Simulacion;
 import java.util.ArrayList;
@@ -45,41 +46,11 @@ public class GraficasWS {
     @POST
     @Path("simulacion")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Simulacion> guardarDatos(
-        @FormParam("plazo") Integer plazo,
+    public List<Simulacion> guardarDatos( @FormParam("plazo") Integer plazo,
             @FormParam("importe") Integer importe,
             @FormParam("tipoinversion") String tipo){        
-        List<Simulacion> listaSimulados = new ArrayList();
-        for (int i = 1; i <= 5; i++) {
-            Simulacion simulado = new Simulacion();
-            float value;
-            
-            if(plazo == i) {
-                simulado.setSeleccion("Plazo Seleccionado");
-            } else {
-                simulado.setSeleccion("Otros Plazos");
-            }
-            if(i == 1) {
-               value = (importe*valorInversion(tipo)) + importe; 
-               simulado.setValue(value);
-            } else {
-                value = listaSimulados.get(i-2).getValue();
-                simulado.setValue((value*valorInversion(tipo)) + value);
-            }
-            simulado.setPlazo(i);
-            listaSimulados.add(simulado);  
-        }
-        return listaSimulados;
+
+        return GraficaDAO.guardarDatos(plazo, importe, tipo);
     }
     
-    public float valorInversion(String tipoInversion){        
-        switch(tipoInversion){            
-            case "yisus":
-                return (float) 0.105;
-            case "wacha":
-                return (float) 0.65;
-            default:
-                return 0;
-        }    
-    }
 }

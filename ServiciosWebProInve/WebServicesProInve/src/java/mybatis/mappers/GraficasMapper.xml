@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<mapper namespace="graficas">        
+ <select id="getTasaRetornoByTipoInversion" resultType="pojos.TipoInversion"
+    parameterType="string">
+        SELECT
+        TipoInversion.Id_tipo_inversion
+        TipoInversion.Tasa_retorno
+        TipoInversion.Tipo_inversion
+        FROM TipoInversion
+        WHERE TipoInversion.Tipo_inversion = #{Tipo_inversion}
+    </select>
+</mapper>
+

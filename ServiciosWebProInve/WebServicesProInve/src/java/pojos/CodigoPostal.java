@@ -13,7 +13,7 @@ public class CodigoPostal {
     Integer id_codigo_postal;
     Integer id_municipio;
     Integer codigo_postal;
-    String colonia; 
+    String colonia;
 
     public CodigoPostal() {
     }

@@ -30,4 +30,22 @@ public class CodigoPostalDAO {
         }
         return listaCP;
     }
+    
+    public static List<CodigoPostal> getCodigoPostalByCodigoPostal
+         (int codigoPostal) {
+        List<CodigoPostal> listaCP = null;
+        SqlSession conn = MyBatisUtil.getSession();
+        
+        if(conn != null) {
+            try {
+                listaCP = conn.selectList("direccion.getCodigoPostalByCP", 
+                        codigoPostal);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                conn.close();
+            }
+        }
+        return listaCP;
+    }
 }

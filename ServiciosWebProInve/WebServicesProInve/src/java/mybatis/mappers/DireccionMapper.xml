@@ -17,5 +17,15 @@ and open the template in the editor.
         CodigoPostal.colonia
         FROM CodigoPostal
     </select>
+    <select id="getCodigoPostalByCP" resultType="pojos.CodigoPostal"
+    parameterType="int">
+        SELECT
+        CodigoPostal.id_codigo_postal,
+        CodigoPostal.id_municipio,
+        CodigoPostal.codigo_postal,
+        CodigoPostal.colonia
+        FROM CodigoPostal
+        WHERE CodigoPostal.codigo_postal = #{codigo_postal}
+    </select>
 </mapper>
 

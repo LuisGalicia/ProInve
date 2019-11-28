@@ -23,6 +23,7 @@ and open the template in the editor.
     </environments>
     <mappers>
         <mapper resource="mybatis/mappers/DireccionMapper.xml"/>
+        <mapper resource="mybatis/mappers/GraficasMapper.xml"/>
         <mapper resource="mybatis/mappers/Step0Mapper.xml"/>
         <mapper resource="mybatis/mappers/Step1Mapper.xml"/>
         <mapper resource="mybatis/mappers/Step3Mapper.xml"/>
