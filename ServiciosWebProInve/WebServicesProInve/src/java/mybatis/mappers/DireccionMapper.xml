@@ -8,7 +8,13 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 
-<mapper namespace="direccion">        
+<mapper namespace="direccion">    
+    <select id="recuperarColonias" parameterType="pojos.CodigoPostal" resultType="pojos.CodigoPostal">
+        SELECT Id_Codigo_Postal, Codigo_Postal, Colonia, Id_Municipio 
+        FROM ProInver.dbo.Codigo_postal
+        WHERE Codigo_Postal = #{codigo_postal};                
+    </select>    
+        
     <select id="getAllCP" resultType="pojos.CodigoPostal">
         SELECT
         CodigoPostal.id_codigo_postal,
