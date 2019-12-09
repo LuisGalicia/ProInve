@@ -41,16 +41,16 @@
     <h1>Simulador de inversión</h1>
     <h3>LLene los campos requeridos para poder continuar.</h3>
     <br />
-    <oj-input-text id="importeinput"
-      label-hint="Introducir el importe a invertir (La cantidad debe de ser mayor a 10,000 y menor a 2,000,000):">
-    </oj-input-text required>
+    <oj-input-number id="importeinput" label-hint="Introducir el importe a invertir 
+    (La cantidad debe de ser mayor a 10,000 y menor a 2,000,000):" 
+    min=10000 max=2000000 ></oj-input-number>
 
     <oj-combobox-one id="plazoinversioninput"  label-hint="Plazo de inversión:" required>
-      <oj-option value="1">1</oj-option>
-      <oj-option value="2">2</oj-option>
-      <oj-option value="3">3</oj-option>
-      <oj-option value="4">4</oj-option>
-      <oj-option value="5">5</oj-option>
+      <oj-option value=1>1</oj-option>
+      <oj-option value=2>2</oj-option>
+      <oj-option value=3>3</oj-option>
+      <oj-option value=4>4</oj-option>
+      <oj-option value=5>5</oj-option>
     </oj-combobox-one>
     <oj-combobox-one id="tipoinversioninput"  label-hint="Seleccione uno o más tipos de inversiones:" required>
       <oj-option value="wacha">Tipo de inversión 1</oj-option>
@@ -69,7 +69,7 @@
       </oj-table><br />
     </div>
     <div>
-      <oj-button id='iniciarsimulacion' class="oj-button-primary oj-button-lg" on-oj-action="[[getGraficaSimulacions]]">
+      <oj-button id='iniciarsimulacion' class="oj-button-primary oj-button-lg" on-oj-action="[[getGraficaSimulacion]]">
         INICIAR
         SIMULACION</oj-button>
       <oj-button id='iniciarcomparacion' class="oj-button-primary oj-button-lg" on-oj-action="[[openCompa]]">COMPARAR
