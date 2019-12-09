@@ -31,7 +31,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider', 'text!../
         document.getElementById('modalsimulador').close();
       }
 
-      this.getGraficaSimulacions = function (event) {
+      this.getGraficaSimulacion = function (event) {
         var importe = $("#importeinput").val();
         var plazo = $("#plazoinversioninput").val();
         var tipo = $("#tipoinversioninput").val();
@@ -39,11 +39,20 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider', 'text!../
         getGraficas(plazo, importe, tipo);
       }
 
+      function invertirAhora() {
+
+        var importe = $("#importeinput").val();
+        var plazo = $("#plazoinversioninput").val();
+        var tipo = $("#tipoinversioninput").val();
+        stepZero(plazo, importe, tipo);       
+      }
+
       function openSimu(){
         document.getElementById('modalsimulador').open();
       }
      
       this.direccionSolicitud = function (event) {
+        invertirAhora();
         router.stateId('soliin');
       }
 
@@ -98,7 +107,6 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider', 'text!../
         }
         xhr.send(json);
       }
-
 
       self.connected = function () {
         // Implement if needed

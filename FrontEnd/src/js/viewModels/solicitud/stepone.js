@@ -10,6 +10,7 @@ define(['knockout', 'ojs/ojbootstrap', 'ojs/ojmodule-element-utils', 'ojs/ojmodu
             currentModule('steptwo');
             currentStep('stp2');
          };
+         
       }
       return new SimpleModuleModel();
    }

@@ -47,7 +47,8 @@ public class Step1WS {
     @Produces(MediaType.APPLICATION_JSON)
     public Mensaje guardarDatos(
         @FormParam("datosRecuperados") String datosRecuperados){        
-        Gson gson = new Gson();        
+        Gson gson = new Gson();
+        System.out.println(datosRecuperados);
         Step0 step0 = gson.fromJson(datosRecuperados, Step0.class);        
         Mensaje mensajeResultado = Step0DAO.guardarStep0(step0);       
         return mensajeResultado;
