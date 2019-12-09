@@ -25,6 +25,7 @@ import mybatis.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
 import pojos.Mensaje;
 import pojos.Step0;
+import pojos.TipoInversion;
 
 /**
  * REST Web Service
@@ -53,4 +54,10 @@ public class GraficasWS {
         return GraficaDAO.guardarDatos(plazo, importe, tipo);
     }
     
+    @GET
+    @Path("getalltiposinversion")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<TipoInversion> tiposInversion () {
+        return GraficaDAO.getAllTiposInversion();
+    }
 }

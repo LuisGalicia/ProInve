@@ -18,5 +18,13 @@ and open the template in the editor.
         FROM TipoInversion
         WHERE TipoInversion.Tipo_inversion = #{Tipo_inversion}
     </select>
+    
+    <select id="getAllTiposInv" resultType="pojos.TipoInversion">
+        SELECT
+        Tipo_inversion.Id_Tipo_Inversion,
+        Tipo_inversion.Tipo_inversion,
+        Tipo_inversion.Tasa_retorno,
+        FROM Tipo_inversion
+    </select>
 </mapper>
 

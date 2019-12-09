@@ -60,4 +60,20 @@ public class GraficaDAO {
         }
         return devuelto.getTasa_retorno();
     }
+    
+    public static List<TipoInversion> getAllTiposInversion() {
+        List<TipoInversion> listaTiposInv = null;
+        SqlSession conn = MyBatisUtil.getSession();
+        
+        if(conn != null) {
+            try {
+                listaTiposInv = conn.selectList("graficas.getAllTiposInv");
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                conn.close();
+            }
+        }
+        return listaTiposInv;
+    }
 }
