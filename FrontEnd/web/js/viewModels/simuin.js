@@ -6,17 +6,22 @@
 /*
  * Your incidents ViewModel code goes here
  */
-define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider', 'text!../viewModels/json/simulacion.json',
+define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider',
   'text!../viewModels/json/comparacion.json', 'ojs/ojresponsiveutils', 'ojs/ojresponsiveknockoututils',
   'ojs/ojknockout', 'ojs/ojformlayout', 'ojs/ojlabel', 'ojs/ojselectcombobox', 'ojs/ojselectcombobox',
   'ojs/ojinputtext', 'ojs/ojbutton', 'ojs/ojdatetimepicker', 'ojs/ojradioset', 'ojs/ojinputnumber',
   'ojs/ojswitch', 'ojs/ojbutton', 'ojs/ojtable', 'ojs/ojbootstrap', 'ojs/ojdialog', 'ojs/ojarraydataprovider',
   'ojs/ojchart', 'ojs/ojtoolbar'],
-  function (oj, ko, $, ArrayDataProvider, dataSimu, dataComp) {
+  function (oj, ko, $, ArrayDataProvider, dataComp) {
 
     function SimuinViewModel() {
       var self = this;
       var o;
+      
+      orientationValue = ko.observable('vertical');
+      stackValue = ko.observable('off');
+      dataSimulacion = ko.observable();
+      dataComparacion = new ArrayDataProvider(JSON.parse(dataComp), { keyAttributes: 'id' });
 
       var smQuery = oj.ResponsiveUtils.getFrameworkQuery(oj.ResponsiveUtils.FRAMEWORK_QUERY_KEY.SM_ONLY);
       self.smScreen = oj.ResponsiveKnockoutUtils.createMediaQueryObservable(smQuery);
@@ -35,8 +40,8 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider', 'text!../
         var importe = $("#importeinput").val();
         var plazo = $("#plazoinversioninput").val();
         var tipo = $("#tipoinversioninput").val();
-
-        getGraficas(plazo, importe, tipo);
+        getGraficasService(plazo, importe, tipo);
+        
       }
 
       function invertirAhora() {
@@ -47,9 +52,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider', 'text!../
         stepZero(plazo, importe, tipo);       
       }
 
-      function openSimu(){
-        document.getElementById('modalsimulador').open();
-      }
+      
      
       this.direccionSolicitud = function (event) {
         invertirAhora();
@@ -69,44 +72,39 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider', 'text!../
         implicitSort: [{ attribute: 'tipoinversion', direction: 'ascending' }]
       });
 
-      orientationValue = ko.observable('vertical');
-      stackValue = ko.observable('off');
-      dataSimulacion = ko.observable();
-
-      dataComparacion = new ArrayDataProvider(JSON.parse(dataComp), { keyAttributes: 'id' });
-
-      function getGraficas(plazoParam, importeParam, tipoinversionParam) {
+      var url = "http://localhost:8085/WebServicesProInve/webresources/";
+      function getGraficasService(plazoParam, importeParam, tipoinversionParam) {
 
         console.log(plazoParam, importeParam, tipoinversionParam);
-
+    
         // Post a user
-        var url = "http://localhost:8085/WebServicesProInve/webresources/graficas/simulacion";
-
+        var urlAccess = "graficas/simulacion";
+    
         var data = [];
-
+    
         data.push(encodeURIComponent("plazo") + "=" + encodeURIComponent(plazoParam));
         data.push(encodeURIComponent("importe") + "=" + encodeURIComponent(importeParam));
         data.push(encodeURIComponent("tipoinversion") + "=" + encodeURIComponent(tipoinversionParam));
-
-        var json = data.join('&').replace(/%20/g,'+');
-
+    
+        var json = data.join('&').replace(/%20/g, '+');
+    
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", url);
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded', );
+        xhr.open("POST", url + urlAccess);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhr.timeout = 120000; //milliseconds
-        
+    
         xhr.onload = function () {
-          var datas = this.response;
-          if (xhr.status >= 200 && xhr.status < 300) {
-            console.error(datas + ":datos mostrados:");
-            dataSimulacion(new ArrayDataProvider(JSON.parse(datas), { keyAttributes: 'plazo' }));
-            openSimu();
-          } else {
-            console.error(datas + "ERRRRRRROR");
-          }
+            var datas = this.response;
+            if (xhr.status >= 200 && xhr.status < 300) {
+                console.error(datas + ":datos mostrados:");
+                dataSimulacion(new ArrayDataProvider(JSON.parse(datas), { keyAttributes: 'plazo' }));
+                document.getElementById('modalsimulador').open();
+            } else {
+                console.error(datas + "ERRRRRRROR");
+            }
         }
         xhr.send(json);
-      }
+    }
 
       self.connected = function () {
         // Implement if needed

@@ -2,7 +2,6 @@ var url = "http://localhost:8085/WebServicesProInve/webresources/";
 
 function stepZero(plazoParam, importeParam, tipoinversionParam) {
 
-    console.log(plazoParam, importeParam, tipoinversionParam);
     // Post a user
     var urlAccess = "steps/step0";
 
@@ -46,18 +45,63 @@ function stepZero(plazoParam, importeParam, tipoinversionParam) {
     request.send(urlEncodedData);
 }
 
-function stepOne() {
+function stepOne(nombre, apellidopa, apellidoma, rfc, fecha, profesion, empresa, correo, telefono, idstepzero) {
 
     // Post a user
-    var urlAccess = "steps/step0";
+    var urlAccess = "steps/step1";
+
+    var request = new XMLHttpRequest();
+    var respuesta;
+    var urlEncodedData = "";
+    var urlEncodedDataPairs = [];
+    var stepone = JSON.stringify({
+        nombre: nombre, apellido_paterno: apellidopa, apellido_materno: apellidoma, rfc: rfc, fecha_nacimiento: fecha,
+        profesion: profesion, nombre_empresa: empresa, correo: correo, telefono: telefono, id_step0: idstepzero
+    });
+    urlEncodedDataPairs.push(encodeURIComponent("datosRecuperados") + "=" +
+        encodeURIComponent(stepone));
+
+    urlEncodedData = urlEncodedDataPairs.join("&").replace(/%20/g, "+");
+
+    request.open("POST", url + urlAccess);
+    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.timeout = 5000;
+
+    request.onreadystatechange = function () {
+        if (!request.status >= 200 && request.status < 300) {
+            alert("Ocurrió un error en la petición");
+        }
+    };
+
+    request.ontimeout = function (e) {
+        alert("Se agotó el tiempo de espera, intentelo más tarde");
+    };
+
+    request.onload = function () {
+        respuesta = JSON.parse(this.response);
+        if (request.status >= 200 && request.status < 300) {
+            if (respuesta.error) {
+                alert(respuesta.mensaje);
+            } else {
+                alert(respuesta);
+            }
+        }
+    };
+    request.send(urlEncodedData);
+}
+
+function stepthree(calle, numerocalle, codigopostal, idstepone) {
+
+    // Post a user
+    var urlAccess = "steps/step3";
 
     var request = new XMLHttpRequest();
     var respuesta;
     var urlEncodedData = "";
     var urlEncodedDataPairs = [];
     var stepcero = JSON.stringify({
-        id_tipo_inversion: tipoinversionParam, id_origen: 1,
-        monto_inversion: importeParam, plazo: plazoParam
+        calle: calle, numero: numerocalle,
+        id_codigo_postal: codigopostal, id_step1: idstepone
     });
     urlEncodedDataPairs.push(encodeURIComponent("datosRecuperados") + "=" +
         encodeURIComponent(stepcero));
@@ -89,6 +133,79 @@ function stepOne() {
         }
     };
     request.send(urlEncodedData);
+}
+
+function stepfour(cuenta, clabe, idstepone) {
+
+    // Post a user
+    var urlAccess = "steps/step4";
+
+    var request = new XMLHttpRequest();
+    var respuesta;
+    var urlEncodedData = "";
+    var urlEncodedDataPairs = [];
+    var stepcero = JSON.stringify({
+        clabe: clabe, no_cuenta: cuenta, id_step1: idstepone
+    });
+    urlEncodedDataPairs.push(encodeURIComponent("datosRecuperados") + "=" +
+        encodeURIComponent(stepcero));
+
+    urlEncodedData = urlEncodedDataPairs.join("&").replace(/%20/g, "+");
+
+    request.open("POST", url + urlAccess);
+    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.timeout = 5000;
+
+    request.onreadystatechange = function () {
+        if (!request.status >= 200 && request.status < 300) {
+            alert("Ocurrió un error en la petición");
+        }
+    };
+
+    request.ontimeout = function (e) {
+        alert("Se agotó el tiempo de espera, intentelo más tarde");
+    };
+
+    request.onload = function () {
+        respuesta = JSON.parse(this.response);
+        if (request.status >= 200 && request.status < 300) {
+            if (respuesta.error) {
+                alert(respuesta.mensaje);
+            } else {
+                alert(respuesta);
+            }
+        }
+    };
+    request.send(urlEncodedData);
+}
+
+function subirFirmaWS(signature) {
+    var request = new XMLHttpRequest();
+    var formdata = new FormData();
+    var urlAccess = "firma";
+    formdata.append('id', 11);
+    formdata.append('signature', signature);
+    request.open('POST', url + urlAccess, true);
+    request.timeout = 120000; //milliseconds
+    request.onload = function () {
+        var data = JSON.parse(this.response);
+        if (request.status >= 200 && request.status < 300 && !data.error) {
+            alert(data.mensaje);
+            hasSignature = false;
+            signaturePad.clear();
+        } else {
+            alert("El servicio no se encuentra disponible en este momento");
+        }
+    }
+    request.onreadystatechange = function () {
+        if (!(request.status >= 200 && request.status < 300)) {
+            alert("El servicio no se encuentra disponible en este momento...");
+        }
+    };
+    request.ontimeout = function (e) {
+        alert("El servicio no se encuentra disponible en este momento... ");
+    };
+    request.send(formdata);
 }
 
 

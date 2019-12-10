@@ -4,6 +4,7 @@ define(['knockout', 'ojs/ojbootstrap', 'ojs/ojmodule-element-utils', 'ojs/ojmodu
       function SimpleModuleModel() {
          ModuleElementUtils = ModuleElementUtils;
          var hasSignature = false;
+         var signaturePad = null;         
 
          self.limpiarFirma = function () {
             hasSignature = false;
@@ -18,7 +19,7 @@ define(['knockout', 'ojs/ojbootstrap', 'ojs/ojmodule-element-utils', 'ojs/ojmodu
                   asArray[i] = data.charCodeAt(i);
                }
                const blob = new Blob([asArray], { type: 'image/png' });
-               //subirFirmaWS(blob);
+               subirFirmaWS(blob);
             } else {
                alert("Es necesario que introduzcas tu firma digitalizada...");
             }
