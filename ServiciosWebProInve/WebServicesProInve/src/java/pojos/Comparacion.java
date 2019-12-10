@@ -11,13 +11,13 @@ package pojos;
  */
 public class Comparacion {
     int importe;
-    String[] tiposInversion;
+    int[] tiposInversion;
     int plazo;
 
     public Comparacion() {
     }
 
-    public Comparacion(int importe, String[] tiposInversion, int plazo) {
+    public Comparacion(int importe, int[] tiposInversion, int plazo) {
         this.importe = importe;
         this.tiposInversion = tiposInversion;
         this.plazo = plazo;
@@ -32,11 +32,11 @@ public class Comparacion {
         this.importe = importe;
     }
 
-    public String[] getTiposInversion() {
+    public int[] getTiposInversion() {
         return tiposInversion;
     }
 
-    public void setTiposInversion(String[] tiposInversion) {
+    public void setTiposInversion(int[] tiposInversion) {
         this.tiposInversion = tiposInversion;
     }
 

@@ -27,7 +27,7 @@ public class GraficaDAO {
         for (int i = 1; i <= 5; i++) {
             Simulacion simulado = new Simulacion();
             float value;
-            float tasaRetorno = tasaInversion(tipo);
+            float tasaRetorno = tasaInversionPorNombre(tipo);
 
             if (plazo == i) {
                 simulado.setSeleccion("Plazo Seleccionado");
@@ -47,7 +47,7 @@ public class GraficaDAO {
         return listaSimulados;
     }
 
-    public static float tasaInversion(String tipoInversion) {
+    public static float tasaInversionPorNombre(String tipoInversion) {
         List<TipoInversion> listaTiposInv = null;
         SqlSession conn = MyBatisUtil.getSession();
         float tasa = 0;
@@ -69,7 +69,52 @@ public class GraficaDAO {
         }
         return tasa;
     }
+    
+    public static float tasaInversion(int tipoInversion) {
+        List<TipoInversion> listaTiposInv = null;
+        SqlSession conn = MyBatisUtil.getSession();
+        float tasa = 0;
 
+        if (conn != null) {
+            try {
+                listaTiposInv = conn.selectList("graficas.getAllTiposInv");
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                conn.close();
+            }
+        }
+        for (int i = 0; i < listaTiposInv.size(); i++) {
+            if(listaTiposInv.get(i).getId_tipo_inversion() == tipoInversion) {
+                tasa = listaTiposInv.get(i).getTasa_retorno();
+                System.out.println("la tasa para " + listaTiposInv.get(i).getTipo_inversion() + " es: " + listaTiposInv.get(i).getTasa_retorno());
+            }   
+        }
+        return tasa;
+    }
+
+    public static String getNombreTipoInversion(int tipoInversion) {
+        List<TipoInversion> listaTiposInv = null;
+        SqlSession conn = MyBatisUtil.getSession();
+        String nombreTipoInv = "";
+
+        if (conn != null) {
+            try {
+                listaTiposInv = conn.selectList("graficas.getAllTiposInv");
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                conn.close();
+            }
+        }
+        for (int i = 0; i < listaTiposInv.size(); i++) {
+            if(listaTiposInv.get(i).getId_tipo_inversion() == tipoInversion) {
+                nombreTipoInv = listaTiposInv.get(i).getTipo_inversion();
+            }   
+        }
+        return nombreTipoInv;
+    }
+    
     public static List<TipoInversion> getAllTiposInversion() {
         List<TipoInversion> listaTiposInv = null;
         SqlSession conn = MyBatisUtil.getSession();
@@ -88,7 +133,7 @@ public class GraficaDAO {
 
     public static List<Simulacion> getValoresComparacion(Comparacion compara) {
         List<Simulacion> objetosComparados = new ArrayList<>();
-        String[] tiposInversion = compara.getTiposInversion();
+        int[] tiposInversion = compara.getTiposInversion();
 
         System.out.println("el largo del arreglo es: " +compara.getTiposInversion().length);
         for (int i = 0; i < compara.getTiposInversion().length; i++) {
@@ -98,7 +143,7 @@ public class GraficaDAO {
                     inversionDeRetorno(compara.getPlazo(), compara.getImporte(), tasaInversion(tiposInversion[i])) + "--");
            Simulacion inversion = new Simulacion(); 
            inversion.setPlazo(compara.getPlazo());
-           inversion.setTipoinversion(tiposInversion[i]);
+           inversion.setTipoinversion(getNombreTipoInversion(tiposInversion[i]));
            //se envían los parámetros para retornar el valor de retorno
            inversion.setValue(inversionDeRetorno(compara.getPlazo(), compara.getImporte(), tasaInversion(tiposInversion[i])));
            objetosComparados.add(inversion);
