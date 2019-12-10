@@ -1,21 +1,21 @@
 [
     {
-        "seleccion": "Tipo de inversión 1",
+        "plazo": "5 años",
         "tipoinversion": "Tipo de inversión 1",
         "value": 14000
     },
     {
-        "seleccion": "Tipo de inversión 2",
-        "tipoinversion": "Tipo de inversión 2",
+        "plazo": "5 años",
+        "tipoinversion": "5 años",
         "value": 11500
     },
     {
-        "seleccion": "Tipo de inversión 3",
+        "plazo": "5 años",
         "tipoinversion": "Tipo de inversión 3",
         "value": 15400
     },
     {
-        "seleccion": "Tipo de inversión 4",
+        "plazo": "5 años",
         "tipoinversion": "Tipo de inversión 4",
         "value": 17800
     }
