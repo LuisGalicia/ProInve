@@ -42,32 +42,35 @@
     <h3>LLene los campos requeridos para poder continuar.</h3>
     <br />
     <oj-input-number id="importeinput" label-hint="Introducir el importe a invertir 
-    (La cantidad debe de ser mayor a 10,000 y menor a 2,000,000):" 
-    min=10000 max=2000000 ></oj-input-number>
+    (La cantidad debe de ser mayor a 10,000 y menor a 2,000,000):" min=10000 max=2000000></oj-input-number>
 
-    <oj-combobox-one id="plazoinversioninput"  label-hint="Plazo de inversión:" required>
+    <oj-combobox-one id="plazoinversioninput" label-hint="Plazo de inversión:" required>
       <oj-option value=1>1</oj-option>
       <oj-option value=2>2</oj-option>
       <oj-option value=3>3</oj-option>
       <oj-option value=4>4</oj-option>
       <oj-option value=5>5</oj-option>
     </oj-combobox-one>
-    <oj-combobox-one id="tipoinversioninput"  label-hint="Seleccione uno o más tipos de inversiones:" required>
-      <oj-option value=1>Tipo de inversión 1</oj-option>
-      <oj-option value=2>Tipo de inversión 2</oj-option>
-      <oj-option value=3>Tipo de inversión 3</oj-option>
-      <oj-option value=4>Tipo de inversión 4</oj-option>
-    </oj-combobox-one>
-    <div style="padding-left: 10px; padding-bottom: 20px;">
-      <oj-table id='table' aria-label='Tipos de inversión' data='[[dataprovider]]'
-        selection-mode='{"row": "multiple", "column": "multiple"}' dnd='{"reorder": {"columns": "enabled"}}'
-        scroll-policy='loadMoreOnScroll' scroll-policy-options='{"fetchSize": 10}' columns='[{"headerText": "Tipos de inversión", 
-                 "field": "tipoinversion",
-                 "headerClassName": "oj-sm-only-hide",
-                 "className": "oj-sm-only-hide",
-                 "resizable": "enabled"}]' style='width: 100%; background-color: white;'>
-      </oj-table><br />
-    </div>
+    <oj-table id='table' aria-label='Tipos de inversión' accessibility.row-header="tipo_inversion" data='[[dataprovider]]'
+      columns='{{columnArray}}' scroll-policy='loadMoreOnScroll' scroll-policy-options.fetch-size='3'
+      selected.row='{{selectedItems}}' on-selected-changed="{{selectionListener}}" selection-mode='{"row": "multiple"}'
+      columns-default='{"sortable": "enabled"}' style='width: 100%;height:300px;'>
+      <template slot="headerCheckTemplate">
+        <oj-checkboxset value='[[headerCheckStatus]]' on-value-changed='[[headerCheckboxListener]]'
+          class='oj-checkboxset-no-chrome oj-selection-checkbox' id="table_header_checkbox">
+          <oj-option aria-label="Checkbox Select All" value="checked"></oj-option>
+        </oj-checkboxset>
+      </template>
+      <template slot="checkTemplate" data-oj-as="cell">
+        <oj-checkboxset value='[[handleCheckbox(cell.key)]]' on-value-changed='[[checkboxListener]]'
+          class='oj-checkboxset-no-chrome oj-selection-checkbox' :id="[['table_checkboxset' + cell.key]]"
+          :data-row-key="{{cell.row.id_tipo_inversion}}">
+          <oj-option :id="[['table_checkbox' + cell.key]]"
+            aria-label="[['Checkbox Select Row ' + cell.row.id_tipo_inversion]]" value="checked"></oj-option>
+        </oj-checkboxset>
+      </template>
+    </oj-table>
+    <br><br>
     <div>
       <oj-button id='iniciarsimulacion' class="oj-button-primary oj-button-lg" on-oj-action="[[getGraficaSimulacion]]">
         INICIAR
@@ -119,7 +122,7 @@
 
             <template slot='itemTemplate' data-oj-as='item'>
               <oj-chart-item value='[[item.data.value]]' group-id='[[ [item.data.tipoinversion] ]]'
-                series-id='[[item.data.seleccion]]'>
+                series-id='[[item.data.plazo]]'>
               </oj-chart-item>
             </template>
           </oj-chart>
@@ -138,3 +141,23 @@
   </div>
 
 </div>
+<script type="text/javascript">
+console.error("ONLOAD GHGGGGGGG");
+        // Post a user
+        var urlAccess = "graficas/getalltiposinversion";
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url + urlAccess);
+        xhr.timeout = 1200000; //milliseconds
+
+        xhr.onload = function () {
+          var datas = this.response;
+          if (xhr.status >= 200 && xhr.status < 300) {
+            console.log(datas + ":datos mostrados:");
+            alltiposinversion = datas;
+
+          } else {
+            console.error(datas + "ERRRRRRROR");
+          }
+        }
+        xhr.send(null);
+</script>
