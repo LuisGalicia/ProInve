@@ -17,21 +17,21 @@ and open the template in the editor.
         
     <select id="getAllCP" resultType="pojos.CodigoPostal">
         SELECT
-        CodigoPostal.id_codigo_postal,
-        CodigoPostal.id_municipio,
-        CodigoPostal.codigo_postal,
-        CodigoPostal.colonia
-        FROM CodigoPostal
+        Codigo_postal.id_codigo_postal,
+        Codigo_postal.id_municipio,
+        Codigo_postal.codigo_postal,
+        Codigo_postal.colonia
+        FROM ProInver.dbo.Codigo_postal
     </select>
     <select id="getCodigoPostalByCP" resultType="pojos.CodigoPostal"
     parameterType="int">
         SELECT
-        CodigoPostal.id_codigo_postal,
-        CodigoPostal.id_municipio,
-        CodigoPostal.codigo_postal,
-        CodigoPostal.colonia
-        FROM CodigoPostal
-        WHERE CodigoPostal.codigo_postal = #{codigo_postal}
+        Codigo_postal.id_codigo_postal,
+        Codigo_postal.id_municipio,
+        Codigo_postal.codigo_postal,
+        Codigo_postal.colonia
+        FROM ProInver.dbo.Codigo_postal
+        WHERE Codigo_postal.codigo_postal = #{codigo_postal}
     </select>
 </mapper>
 

@@ -15,8 +15,8 @@ and open the template in the editor.
             <dataSource type="POOLED">
                 <property name="driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
                 <property name="url" value="jdbc:sqlserver://localhost:1433;instanceName=SQLEXPRESS;db=ProInver"/>
-                <property name = "username" value = "sa"/>
-                <property name = "password" value = "1001"/>
+                <property name = "username" value = "UserPi"/>
+                <property name = "password" value = "ProInv35tWeb"/>
                 <property name = "poolMaximumActiveConnections" value = "50"/>
             </dataSource>
         </environment>

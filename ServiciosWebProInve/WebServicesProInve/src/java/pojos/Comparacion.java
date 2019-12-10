@@ -10,36 +10,43 @@ package pojos;
  * @author Jahir
  */
 public class Comparacion {
-    String seleccion;
-    String tipoinversion;
-    int value;
+    int importe;
+    String[] tiposInversion;
+    int plazo;
 
     public Comparacion() {
     }
 
-    public String getSeleccion() {
-        return seleccion;
+    public Comparacion(int importe, String[] tiposInversion, int plazo) {
+        this.importe = importe;
+        this.tiposInversion = tiposInversion;
+        this.plazo = plazo;
     }
 
-    public void setSeleccion(String seleccion) {
-        this.seleccion = seleccion;
-    }
-
-    public String getTipoinversion() {
-        return tipoinversion;
-    }
-
-    public void setTipoinversion(String tipoinversion) {
-        this.tipoinversion = tipoinversion;
-    }
-
-    public int getValue() {
-        return value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
-    }
     
-    
+    public int getImporte() {
+        return importe;
+    }
+
+    public void setImporte(int importe) {
+        this.importe = importe;
+    }
+
+    public String[] getTiposInversion() {
+        return tiposInversion;
+    }
+
+    public void setTiposInversion(String[] tiposInversion) {
+        this.tiposInversion = tiposInversion;
+    }
+
+    public int getPlazo() {
+        return plazo;
+    }
+
+    public void setPlazo(int plazo) {
+        this.plazo = plazo;
+    }
+
+
 }

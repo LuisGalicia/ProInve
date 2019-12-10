@@ -11,6 +11,7 @@ import dao.Step1DAO;
 import dao.Step3DAO;
 import dao.Step4DAO;
 import dao.Step5DAO;
+import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -18,6 +19,7 @@ import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
+import pojos.IdRecuperados;
 import pojos.Mensaje;
 import pojos.Step0;
 import pojos.Step1;
@@ -45,24 +47,22 @@ public class Step1WS {
     @POST
     @Path("step0")
     @Produces(MediaType.APPLICATION_JSON)
-    public Mensaje guardarDatos(
+    public List<IdRecuperados> guardarDatos(
         @FormParam("datosRecuperados") String datosRecuperados){        
         Gson gson = new Gson();
         System.out.println(datosRecuperados);
-        Step0 step0 = gson.fromJson(datosRecuperados, Step0.class);        
-        Mensaje mensajeResultado = Step0DAO.guardarStep0(step0);       
-        return mensajeResultado;
+        Step0 step0 = gson.fromJson(datosRecuperados, Step0.class);               
+        return Step0DAO.guardarStep0(step0);
     }
     
     @POST
     @Path("step1")
     @Produces(MediaType.APPLICATION_JSON)
-    public Mensaje guardarDatosInversionista(
+    public List<IdRecuperados> guardarDatosInversionista(
         @FormParam("datosRecuperados") String datosRecuperados){
         Gson gson = new Gson();        
-        Step1 step1 = gson.fromJson(datosRecuperados, Step1.class);        
-        Mensaje mensajeResultado = Step1DAO.guardarStep1(step1);               
-        return mensajeResultado;
+        Step1 step1 = gson.fromJson(datosRecuperados, Step1.class);                       
+        return Step1DAO.guardarStep1(step1);
     }     
     
     @POST

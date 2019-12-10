@@ -5,8 +5,10 @@
  */
 package dao;
 
+import java.util.List;
 import mybatis.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
+import pojos.IdRecuperados;
 import pojos.Mensaje;
 import pojos.Step1;
 
@@ -15,19 +17,19 @@ import pojos.Step1;
  * @author Jahir
  */
 public class Step1DAO {
-    public static Mensaje guardarStep1(Step1 step1){
-        Mensaje mensajeResultado = new Mensaje();
+    public static List<IdRecuperados> guardarStep1(Step1 step1){
+        List<IdRecuperados> idRecuperado = null;
         SqlSession conn = null;
         try {
             conn = MyBatisUtil.getSession();
-            conn.insert("Step1.proAlmGuardarStep1", step1);
+            conn.insert("Step1.guardarStep1", step1);
             conn.commit();
-            mensajeResultado = new Mensaje(false, "Datos registrados correctamente step uno");            
+            idRecuperado = conn.selectList("Step1.getLastSelectStep1");
         } catch (Exception ex) {
-            mensajeResultado = new Mensaje(true, ex.getMessage());
+            ex.printStackTrace();
         }finally{
             conn.close();
         }
-        return mensajeResultado;
+        return idRecuperado;
     }
 }

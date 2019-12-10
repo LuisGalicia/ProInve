@@ -28,4 +28,8 @@ and open the template in the editor.
         #{id_step0},jdbcType=INTEGER,mode=IN})}
     </update>
     
+    <select id="getLastSelectStep1" resultType="pojos.IdRecuperados">
+        SELECT MAX(Id_Step1) AS id_recuperado
+        FROM ProInver.dbo.Step1;
+    </select>
 </mapper>

@@ -20,5 +20,10 @@ and open the template in the editor.
         #{id_origen,jdbcType=INTEGER,mode=IN}, 
         #{monto_inversion,jdbcType=INTEGER,mode=IN}, 
         #{plazo,jdbcType=INTEGER,mode=IN})}
-    </update>    
+    </update>  
+    
+     <select id="getLastSelect" resultType="pojos.IdRecuperados">
+        SELECT MAX(Id_Step0) AS id_recuperado
+        FROM ProInver.dbo.Step0;
+    </select>  
 </mapper>

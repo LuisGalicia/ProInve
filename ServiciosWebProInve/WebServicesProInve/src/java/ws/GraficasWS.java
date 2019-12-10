@@ -23,8 +23,10 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
 import mybatis.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
+import pojos.Comparacion;
 import pojos.Mensaje;
 import pojos.Step0;
+import pojos.Step1;
 import pojos.TipoInversion;
 
 /**
@@ -60,4 +62,15 @@ public class GraficasWS {
     public List<TipoInversion> tiposInversion () {
         return GraficaDAO.getAllTiposInversion();
     }
+    
+    @POST
+    @Path("comparacion")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Simulacion> comparaSimulaciones( 
+            @FormParam("datosRecuperados") String datosRecuperados){        
+        Gson gson = new Gson();        
+        Comparacion compara = gson.fromJson(datosRecuperados, Comparacion.class);
+        return GraficaDAO.getValoresComparacion(compara);
+    }
+    
 }

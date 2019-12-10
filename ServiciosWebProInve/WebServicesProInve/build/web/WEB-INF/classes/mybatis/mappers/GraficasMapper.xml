@@ -12,19 +12,19 @@ and open the template in the editor.
  <select id="getTasaRetornoByTipoInversion" resultType="pojos.TipoInversion"
     parameterType="string">
         SELECT
-        TipoInversion.Id_tipo_inversion
-        TipoInversion.Tasa_retorno
-        TipoInversion.Tipo_inversion
-        FROM TipoInversion
-        WHERE TipoInversion.Tipo_inversion = #{Tipo_inversion}
+        Tipo_inversion.Id_tipo_inversion,
+        Tipo_inversion.Tasa_retorno,
+        Tipo_inversion.Tipo_inversion
+        FROM ProInver.dbo.Tipo_inversion
+        WHERE Tipo_inversion.Tipo_inversion = #{Tipo_inversion}
     </select>
     
     <select id="getAllTiposInv" resultType="pojos.TipoInversion">
         SELECT
         Tipo_inversion.Id_Tipo_Inversion,
         Tipo_inversion.Tipo_inversion,
-        Tipo_inversion.Tasa_retorno,
-        FROM Tipo_inversion
+        Tipo_inversion.Tasa_retorno
+        FROM ProInver.dbo.Tipo_inversion
     </select>
 </mapper>
 
