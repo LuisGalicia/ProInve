@@ -66,10 +66,8 @@ public class GraficaDAO {
             }
         }
         for (int i = 0; i < listaTiposInv.size(); i++) {
-            System.out.println("entra a for para la inversion: " + listaTiposInv.get(i).getTipo_inversion() + ", comparada con: " + tipoInversion);
             if(listaTiposInv.get(i).getId_tipo_inversion() == numEntero) {
                 tasa = listaTiposInv.get(i).getTasa_retorno();
-                System.out.println("la tasa es: " + tasa);
             }   
         }
         return tasa;
