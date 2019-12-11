@@ -128,7 +128,6 @@
           </oj-chart>
 
         </div>
-
       </div>
       <div slot="footer">
         <oj-button id="okButton" class="oj-button-primary oj-button-lg" on-oj-action="[[direccionSolicitud]]">Invertir
@@ -141,23 +140,3 @@
   </div>
 
 </div>
-<script type="text/javascript">
-console.error("ONLOAD GHGGGGGGG");
-        // Post a user
-        var urlAccess = "graficas/getalltiposinversion";
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", url + urlAccess);
-        xhr.timeout = 1200000; //milliseconds
-
-        xhr.onload = function () {
-          var datas = this.response;
-          if (xhr.status >= 200 && xhr.status < 300) {
-            console.log(datas + ":datos mostrados:");
-            alltiposinversion = datas;
-
-          } else {
-            console.error(datas + "ERRRRRRROR");
-          }
-        }
-        xhr.send(null);
-</script>
