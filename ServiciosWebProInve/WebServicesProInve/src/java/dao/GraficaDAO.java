@@ -43,6 +43,8 @@ public class GraficaDAO {
             }
             simulado.setPlazo(i);
             listaSimulados.add(simulado);
+            System.out.println("la tasa de retorno es: " + tasaRetorno + ", el importe es: " + value);
+            System.out.println("El valor del plazo " +i+ " es: " +simulado.getValue());
         }
         return listaSimulados;
     }
@@ -50,7 +52,9 @@ public class GraficaDAO {
     public static float tasaInversionPorNombre(String tipoInversion) {
         List<TipoInversion> listaTiposInv = null;
         SqlSession conn = MyBatisUtil.getSession();
-        float tasa = 0;
+        int numEntero = 6;
+        numEntero = Integer.parseInt(tipoInversion);
+        float tasa = 1;
 
         if (conn != null) {
             try {
@@ -62,9 +66,10 @@ public class GraficaDAO {
             }
         }
         for (int i = 0; i < listaTiposInv.size(); i++) {
-            if(listaTiposInv.get(i).getTipo_inversion().equals(tipoInversion)) {
+            System.out.println("entra a for para la inversion: " + listaTiposInv.get(i).getTipo_inversion() + ", comparada con: " + tipoInversion);
+            if(listaTiposInv.get(i).getId_tipo_inversion() == numEntero) {
                 tasa = listaTiposInv.get(i).getTasa_retorno();
-                System.out.println("la tasa para " + listaTiposInv.get(i).getTipo_inversion() + " es: " + listaTiposInv.get(i).getTasa_retorno());
+                System.out.println("la tasa es: " + tasa);
             }   
         }
         return tasa;
