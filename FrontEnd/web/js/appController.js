@@ -10,6 +10,7 @@ define(['knockout', 'ojs/ojmodule-element-utils', 'ojs/ojknockouttemplateutils',
   'ojs/ojoffcanvas', 'ojs/ojmodule-element', 'ojs/ojknockout'],
   function (ko, moduleUtils, KnockoutTemplateUtils, Router, ArrayDataProvider, ResponsiveUtils, ResponsiveKnockoutUtils, ArrayDataProvider, OffcanvasUtils) {
     function ControllerViewModel() {
+      
       var self = this;
 
       currentModule = ko.observable('stepone');
@@ -17,6 +18,7 @@ define(['knockout', 'ojs/ojmodule-element-utils', 'ojs/ojknockouttemplateutils',
 
       idstepzeroapp = ko.observable();
       idsteponeapp = ko.observable();
+      alltiposinversion = ko.observable([{}]);
 
       this.KnockoutTemplateUtils = KnockoutTemplateUtils;
 

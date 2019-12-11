@@ -1,4 +1,4 @@
-var url = "http://localhost:8085/WebServicesProInve/webresources/";
+var url = "http://localhost:8080/WebServicesProInve/webresources/";
 
 function stepZero(plazoParam, importeParam, tipoinversionParam) {
 
