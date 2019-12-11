@@ -23,7 +23,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider',
       dataSimulacion = ko.observable();
       dataComparacion = new ArrayDataProvider(JSON.parse(dataComp), { keyAttributes: 'id' });
       var tipoinversionSeleccionados = "";
-      var alltiposinversion;
+      this.alltiposinversion = [{}];
 
       var smQuery = oj.ResponsiveUtils.getFrameworkQuery(oj.ResponsiveUtils.FRAMEWORK_QUERY_KEY.SM_ONLY);
       self.smScreen = oj.ResponsiveKnockoutUtils.createMediaQueryObservable(smQuery);
@@ -184,7 +184,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojarraydataprovider',
       { id_tipo_inversion: 3, tipo_inversion: 'Tipo de inversión 3', tasa_retorno: 0.14 },
       { id_tipo_inversion: 4, tipo_inversion: 'Tipo de inversión 4', tasa_retorno: 0.99 }];
 
-      this.dataprovider = new ArrayDataProvider(this.deptArray, { keyAttributes: 'tipo_inversion' });
+      this.dataprovider = new ArrayDataProvider(this.alltiposinversion, { keyAttributes: 'tipo_inversion' });
       this.columnArray = [{
         headerTemplate: 'headerCheckTemplate',
         headerText: 'Select All',
