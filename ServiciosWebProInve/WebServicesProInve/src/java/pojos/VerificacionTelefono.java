@@ -16,18 +16,19 @@ import javax.mail.MessagingException;
  */
 public class VerificacionTelefono {
     // Find your Account Sid and Token at twilio.com/user/account
-  public static final String ACCOUNT_SID = "AC6470e628cdfe127b72a9ebfe5c544647";
-  public static final String AUTH_TOKEN = "cf1ff6bf4b020962e8288477e7832c69";
+  public static final String ACCOUNT_SID = "ACaf689c46c13707e83c841529d40da8f7";
+  public static final String AUTH_TOKEN = "2b823468f2b4e51ab9558b66293c0ca7";
 
-  public static void main(String[] args) throws MessagingException {
+  public int verificaNumero(String numero) {
     Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
     int valorEntero = (int) Math.floor(Math.random()*(9999-1000+1)+1000);
-    Message message = Message.creator(new PhoneNumber("+522281818876"),
-        new PhoneNumber("+18563241001"), 
-        "Que tranza perro, dame el número de verificación" + valorEntero).create();
+    Message message = Message.creator(new PhoneNumber("+52" + numero),
+        new PhoneNumber("+16125646690"), 
+        "Gracias por registrarte a ProInvest inversiones. Tu número de verificación es: " + valorEntero).create();
         System.out.println(message.getSid());
         System.out.println("El número es: " + valorEntero);
+        return valorEntero;
   }
 
 }

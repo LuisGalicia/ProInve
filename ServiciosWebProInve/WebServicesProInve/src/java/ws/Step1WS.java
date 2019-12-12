@@ -19,6 +19,7 @@ import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
+import pojos.ComparaCodigo;
 import pojos.IdRecuperados;
 import pojos.Mensaje;
 import pojos.Step0;
@@ -54,6 +55,16 @@ public class Step1WS {
         Step0 step0 = gson.fromJson(datosRecuperados, Step0.class);               
         return Step0DAO.guardarStep0(step0);
     }
+    
+    @POST
+    @Path("verifica")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<IdRecuperados> verificaCodigoTelefono(
+        @FormParam("datosRecuperados") String datosRecuperados){
+        Gson gson = new Gson();        
+        ComparaCodigo compara = gson.fromJson(datosRecuperados, ComparaCodigo.class);   
+        return Step1DAO.validacionCodigo(compara);
+    }     
     
     @POST
     @Path("step1")

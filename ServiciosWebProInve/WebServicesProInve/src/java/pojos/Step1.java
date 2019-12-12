@@ -21,14 +21,14 @@ public class Step1 {
     String nombre_empresa;
     String correo;
     String telefono;
-    Integer id_codigo_verificacion;    
+    Integer codigo_verificacion;    
     byte[] firma;    
     Integer id_step0;
     
     public Step1(){        
     }
 
-    public Step1(String nombre, String apellido_paterno, String apellido_materno, String rfc, Date fecha_nacimiento, String profesion, String nombre_empresa, String correo, String telefono, Integer id_codigo_verificacion, byte[] firma, Integer id_step0) {
+    public Step1(String nombre, String apellido_paterno, String apellido_materno, String rfc, Date fecha_nacimiento, String profesion, String nombre_empresa, String correo, String telefono, Integer codigo_verificacion, byte[] firma, Integer id_step0) {
         this.nombre = nombre;
         this.apellido_paterno = apellido_paterno;
         this.apellido_materno = apellido_materno;
@@ -38,17 +38,17 @@ public class Step1 {
         this.nombre_empresa = nombre_empresa;
         this.correo = correo;
         this.telefono = telefono;
-        this.id_codigo_verificacion = id_codigo_verificacion;
+        this.codigo_verificacion = codigo_verificacion;
         this.firma = firma;
         this.id_step0 = id_step0;
     }         
 
     public Integer getId_codigo_verificacion() {
-        return id_codigo_verificacion;
+        return codigo_verificacion;
     }
 
-    public void setId_codigo_verificacion(Integer id_codigo_verificacion) {
-        this.id_codigo_verificacion = id_codigo_verificacion;
+    public void setCodigo_verificacion(Integer codigo_verificacion) {
+        this.codigo_verificacion = codigo_verificacion;
     }
 
     public Integer getId_step0() {

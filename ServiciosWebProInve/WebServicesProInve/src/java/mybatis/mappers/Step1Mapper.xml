@@ -10,8 +10,8 @@ and open the template in the editor.
 
 <mapper namespace="Step1">        
     <insert id="guardarStep1" parameterType="pojos.Step1">
-        INSERT INTO ProInver.dbo.Step1 (Nombre, Apellido_Paterno, Apellido_Materno, RFC, Fecha_Nacimiento, Profesion, Nombre_Empresa, Correo, Telefono, Id_Step0) 
-        VALUES(#{nombre}, #{apellido_paterno}, #{apellido_materno}, #{rfc}, #{fecha_nacimiento}, #{profesion}, #{nombre_empresa}, #{correo}, #{telefono}, #{id_step0})
+        INSERT INTO ProInver.dbo.Step1 (Nombre, Apellido_Paterno, Apellido_Materno, RFC, Fecha_Nacimiento, Profesion, Nombre_Empresa, Correo, Telefono, Id_Step0, Codigo_Verificacion) 
+        VALUES(#{nombre}, #{apellido_paterno}, #{apellido_materno}, #{rfc}, #{fecha_nacimiento}, #{profesion}, #{nombre_empresa}, #{correo}, #{telefono}, #{id_step0}, #{codigo_verificacion})
     </insert>    
         
     <update id="proAlmGuardarStep1" statementType="CALLABLE" parameterType="pojos.Step1">
@@ -31,5 +31,14 @@ and open the template in the editor.
     <select id="getLastSelectStep1" resultType="pojos.IdRecuperados">
         SELECT MAX(Id_Step1) AS id_recuperado
         FROM ProInver.dbo.Step1;
+    </select>
+    
+    <select id="getValidaCodigoTelefono" resultType="pojos.ComparaCodigo"
+    parameterType="int">
+        SELECT
+        Step1.Id_Step1,
+        Step1.Codigo_Verificacion
+        FROM ProInver.dbo.Step1
+        WHERE Step1.Id_Step1 = #{Id_Step1}
     </select>
 </mapper>
