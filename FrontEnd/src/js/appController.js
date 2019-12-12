@@ -13,7 +13,7 @@ define(['knockout', 'ojs/ojmodule-element-utils', 'ojs/ojknockouttemplateutils',
       
       var self = this;
 
-      currentModule = ko.observable('stepone');
+      currentModule = ko.observable('stepfour');
       currentStep = ko.observable('stp1');
 
       idstepzeroapp = ko.observable();

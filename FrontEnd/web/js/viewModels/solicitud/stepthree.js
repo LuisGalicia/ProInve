@@ -5,19 +5,13 @@ define( ['knockout', 'ojs/ojbootstrap', 'ojs/ojmodule-element-utils', 'ojs/ojmod
       function SimpleModuleModel() {
          ModuleElementUtils = ModuleElementUtils;
 
+         self.nextStep = function(){
 
-         this.sendstepthree = function (event) {
             var calle = $("#inputcalle").val();
             var numerocalle = $("#inputcallenumero").val();
             var codigopostal = $("#codigoPostal").val();
 
-            stepthree(calle, numerocalle, codigopostal, idsteponeapp);
-            
-         }
-
-         self.nextStep = function(){
-            currentModule('stepfour');
-            currentStep('stp4');
+            stepthree(calle, numerocalle, codigopostal, idsteponeapp());
          };
       }
       return new SimpleModuleModel();

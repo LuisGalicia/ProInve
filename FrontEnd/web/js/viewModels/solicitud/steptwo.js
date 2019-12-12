@@ -6,8 +6,9 @@ define( ['knockout', 'ojs/ojbootstrap', 'ojs/ojmodule-element-utils', 'ojs/ojmod
          ModuleElementUtils = ModuleElementUtils;
 
          self.nextStep = function(){
-            currentModule('stepthree');
-            currentStep('stp3');
+
+            var codigo = $("#inputsmsconfir").val();
+            steptwo(codigo, idstepzeroapp);
          };
       }
       return new SimpleModuleModel();

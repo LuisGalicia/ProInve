@@ -15,7 +15,6 @@ define(['knockout', 'ojs/ojbootstrap', 'ojs/ojmodule-element-utils', 'ojs/ojmodu
             var empresa = $("#inputnombreemperesa").val();
             var correo = $("#inputcorreo").val();
             var telefono = $("#inputtelefono").val();
-            alert(fecha);
             stepOne(nombre, apellidopa, apellidoma, rfc, fecha, profesion, empresa, correo, telefono, idstepzeroapp());
             
          };

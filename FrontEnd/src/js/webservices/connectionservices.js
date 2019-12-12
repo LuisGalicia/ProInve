@@ -24,17 +24,17 @@ function stepZero(plazoParam, importeParam, tipoinversionParam) {
   request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   request.timeout = 5000;
 
-  request.onreadystatechange = function() {
+  request.onreadystatechange = function () {
     if (!request.status >= 200 && request.status < 300) {
       alert("Ocurrió un error en la petición");
     }
   };
 
-  request.ontimeout = function(e) {
+  request.ontimeout = function (e) {
     alert("Se agotó el tiempo de espera, intentelo más tarde");
   };
 
-  request.onload = function() {
+  request.onload = function () {
     respuesta = JSON.parse(this.response);
     if (request.status >= 200 && request.status < 300) {
       idstepzeroapp(respuesta[0].id_recuperado);
@@ -84,29 +84,72 @@ function stepOne(
   request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   request.timeout = 5000;
 
-  request.onreadystatechange = function() {
+  request.onreadystatechange = function () {
     if (!request.status >= 200 && request.status < 300) {
       alert("Ocurrió un error en la petición");
     }
   };
 
-  request.ontimeout = function(e) {
+  request.ontimeout = function (e) {
     alert("Se agotó el tiempo de espera, intentelo más tarde");
   };
 
-  request.onload = function() {
+  request.onload = function () {
     respuesta = JSON.parse(this.response);
     if (request.status >= 200 && request.status < 300) {
-        idsteponeapp(respuesta[0].id_recuperado);
-        alert(idsteponeapp);
-        currentModule('steptwo');
-        currentStep('stp2');
-      
+      idsteponeapp(respuesta[0].id_recuperado);
+      currentModule('steptwo');
+      currentStep('stp2');
+
     }
   };
   request.send(urlEncodedData);
 }
+function steptwo(codigo, idstepone) {
+  // Post a user
+  var urlAccess = "steps/verifica";
 
+  var request = new XMLHttpRequest();
+  var respuesta;
+  var urlEncodedData = "";
+  var urlEncodedDataPairs = [];
+  var stepcero = JSON.stringify({
+    Id_Step1: idstepone,
+    Codigo_Verificacion: codigo
+  });
+  urlEncodedDataPairs.push(
+    encodeURIComponent("datosRecuperados") + "=" + encodeURIComponent(stepcero)
+  );
+
+  urlEncodedData = urlEncodedDataPairs.join("&").replace(/%20/g, "+");
+
+  request.open("POST", url + urlAccess);
+  request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  request.timeout = 5000;
+
+  request.onreadystatechange = function () {
+    if (!request.status >= 200 && request.status < 300) {
+      alert("Ocurrió un error en la petición");
+    }
+  };
+
+  request.ontimeout = function (e) {
+    alert("Se agotó el tiempo de espera, intentelo más tarde");
+  };
+
+  request.onload = function () {
+    respuesta = JSON.parse(this.response);
+    if (request.status >= 200 && request.status < 300) {
+      if(espuesta[0].id_recuperado == 1){
+        currentModule('stepthree');
+        currentStep('stp3');
+      }else{
+        alert("El codigo ingresado no corresponde");
+      }
+    }
+  };
+  request.send(urlEncodedData);
+}
 function stepthree(calle, numerocalle, codigopostal, idstepone) {
   // Post a user
   var urlAccess = "steps/step3";
@@ -131,24 +174,23 @@ function stepthree(calle, numerocalle, codigopostal, idstepone) {
   request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   request.timeout = 5000;
 
-  request.onreadystatechange = function() {
+  request.onreadystatechange = function () {
     if (!request.status >= 200 && request.status < 300) {
       alert("Ocurrió un error en la petición");
     }
   };
 
-  request.ontimeout = function(e) {
+  request.ontimeout = function (e) {
     alert("Se agotó el tiempo de espera, intentelo más tarde");
   };
 
-  request.onload = function() {
+  request.onload = function () {
     respuesta = JSON.parse(this.response);
     if (request.status >= 200 && request.status < 300) {
-      if (respuesta.error) {
-        alert(respuesta.mensaje);
-      } else {
-        alert(respuesta);
-      }
+      currentModule('stepfour');
+      currentStep('stp4');
+    }else{
+      alert("Ocurrió un error, vuelva a intentar");
     }
   };
   request.send(urlEncodedData);
@@ -177,25 +219,25 @@ function stepfour(cuenta, clabe, idstepone) {
   request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   request.timeout = 5000;
 
-  request.onreadystatechange = function() {
+  request.onreadystatechange = function () {
     if (!request.status >= 200 && request.status < 300) {
       alert("Ocurrió un error en la petición");
     }
   };
 
-  request.ontimeout = function(e) {
+  request.ontimeout = function (e) {
     alert("Se agotó el tiempo de espera, intentelo más tarde");
   };
 
-  request.onload = function() {
+  request.onload = function () {
     respuesta = JSON.parse(this.response);
     if (request.status >= 200 && request.status < 300) {
-      if (respuesta.error) {
-        alert(respuesta.mensaje);
-      } else {
-        alert(respuesta);
+      currentModule('stepfive');
+      currentStep('stp5');
+      }else{
+        alert("Ocurrió un error, vuelva a intentar");
       }
-    }
+    
   };
   request.send(urlEncodedData);
 }
@@ -208,7 +250,7 @@ function subirFirmaWS(signature) {
   formdata.append("signature", signature);
   request.open("POST", url + urlAccess, true);
   request.timeout = 120000; //milliseconds
-  request.onload = function() {
+  request.onload = function () {
     var data = JSON.parse(this.response);
     if (request.status >= 200 && request.status < 300 && !data.error) {
       alert(data.mensaje);
@@ -218,12 +260,12 @@ function subirFirmaWS(signature) {
       alert("El servicio no se encuentra disponible en este momento");
     }
   };
-  request.onreadystatechange = function() {
+  request.onreadystatechange = function () {
     if (!(request.status >= 200 && request.status < 300)) {
       alert("El servicio no se encuentra disponible en este momento...");
     }
   };
-  request.ontimeout = function(e) {
+  request.ontimeout = function (e) {
     alert("El servicio no se encuentra disponible en este momento... ");
   };
   request.send(formdata);
