@@ -31,6 +31,7 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(ws.CuentaBancariaWS.class);
         resources.add(ws.DireccionWS.class);
+        resources.add(ws.FirmaWS.class);
         resources.add(ws.GraficasWS.class);
         resources.add(ws.Step1WS.class);
     }
