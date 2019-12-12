@@ -47,9 +47,7 @@ define([
     orientationValue = ko.observable("vertical");
     stackValue = ko.observable("off");
     dataSimulacion = ko.observable();
-    dataComparacion = new ArrayDataProvider(JSON.parse(dataComp), {
-      keyAttributes: "id"
-    });
+    dataComparacion =  ko.observable();
     var tipoinversionSeleccionados = "";
 
     var smQuery = oj.ResponsiveUtils.getFrameworkQuery(
@@ -74,15 +72,16 @@ define([
       document.getElementById("modalsimulador").close();
     };
 
-    this.getGraficaSimulacion = function(event) {
+    this.getGraficaSimulacion2 = function(event) {
       var importe = $("#importeinput").val();
       var plazo = $("#plazoinversioninput").val();
       var array = tipoinversionSeleccionados.split(",");
       if (tipoinversionSeleccionados != "") {
-        if (array.length < 2) {
-          getGraficasService(plazo, importe, array);
+        if (array.length >= 2) {
+          console.log(plazo, importe, array);
+          getGraficasCompararService(plazo, importe, array);
         } else {
-          alert("Seleccione solo un tipo de inversión");
+          alert("Seleccione más de un tipo de inversión");
         }
       } else {
         alert("Seleccione un tipo de inversión");
@@ -95,6 +94,7 @@ define([
       var array = tipoinversionSeleccionados.split(",");
       if (tipoinversionSeleccionados != "") {
         if (array.length < 2) {
+          console.log(plazo, importe, array[0]);
           getGraficasService(plazo, importe, array[0]);
         } else {
           alert("Seleccione solo un tipo de inversión");
@@ -108,7 +108,8 @@ define([
       var importe = $("#importeinput").val();
       var plazo = $("#plazoinversioninput").val();
       var array = tipoinversionSeleccionados.split(",");
-      stepZero(plazo, importe, array);
+      console.log("Antes del step 0: " + importe + "," + plazo + "," + array[0]);
+      stepZero(plazo, importe, array[0]);
       router.stateId("soliin");
     };
 
@@ -159,7 +160,7 @@ define([
       xhr.onload = function() {
         var datas = this.response;
         if (xhr.status >= 200 && xhr.status < 300) {
-          console.error(datas + ":datos mostrados:");
+          console.log(datas + ":datos mostrados:");
           dataSimulacion(
             new ArrayDataProvider(JSON.parse(datas), { keyAttributes: "plazo" })
           );
@@ -176,7 +177,7 @@ define([
       importeParam,
       tipoinversionParam
     ) {
-      var urlAccess = "graficas/simulacion";
+      var urlAccess = "graficas/comparacion";
 
       var request = new XMLHttpRequest();
       var respuesta;
@@ -213,13 +214,15 @@ define([
       };
 
       request.onload = function() {
-        respuesta = JSON.parse(this.response);
+        var datas = this.response;
         if (request.status >= 200 && request.status < 300) {
-          if (respuesta.error) {
-            alert(respuesta.mensaje);
-          } else {
-            alert(respuesta);
-          }
+          console.log(datas + ":datos mostrados:");
+          dataComparacion(
+            new ArrayDataProvider(JSON.parse(datas), { keyAttributes: "plazo" })
+          );
+          document.getElementById("modalcomparar").open();
+        } else {
+          console.error(datas + "ERRRRRRROR");
         }
       };
       request.send(urlEncodedData);

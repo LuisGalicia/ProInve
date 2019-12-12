@@ -72,10 +72,10 @@
     </oj-table>
     <br><br>
     <div>
-      <oj-button id='iniciarsimulacion' class="oj-button-primary oj-button-lg" on-oj-action="[[getGraficaSimulacion]]">
+      <oj-button id='iniciarsimulacion' class="oj-button-primary oj-button-lg" on-oj-action="[[getGraficaSimulacion1]]">
         INICIAR
         SIMULACION</oj-button>
-      <oj-button id='iniciarcomparacion' class="oj-button-primary oj-button-lg" on-oj-action="[[openCompa]]">COMPARAR
+      <oj-button id='iniciarcomparacion' class="oj-button-primary oj-button-lg" on-oj-action="[[getGraficaSimulacion2]]">COMPARAR
         TIPOS DE INVERSIÓN</oj-button>
     </div>
   </oj-form-layout>
@@ -130,9 +130,6 @@
         </div>
       </div>
       <div slot="footer">
-        <oj-button id="okButton" class="oj-button-primary oj-button-lg" on-oj-action="[[direccionSolicitud]]">Invertir
-          Ahora
-        </oj-button>
         <oj-button id="okButton" class="oj-button-lg" on-oj-action="[[closeCompa]]">Cerrar
         </oj-button>
       </div>
