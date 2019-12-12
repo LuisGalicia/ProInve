@@ -23,6 +23,7 @@ and open the template in the editor.
         Codigo_postal.colonia
         FROM ProInver.dbo.Codigo_postal
     </select>
+    
     <select id="getCodigoPostalByCP" resultType="pojos.CodigoPostal"
     parameterType="int">
         SELECT
